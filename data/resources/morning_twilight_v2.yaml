@@ -1,7 +1,7 @@
 # https://github.com/tsaoshuang/Rime-tiger_code/blob/main/squirrel.yaml#L942
 patch:
   "preset_color_schemes/morning_twilight":
-    name: "晨光始／Morning Twilight"
+    name: "晨光始／Morning Twilight（修改版）"
     author: 半分星
 
     back_color: 0xE4EAEFF8

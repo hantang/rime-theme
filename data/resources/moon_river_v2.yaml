@@ -1,7 +1,7 @@
 # https://github.com/tsaoshuang/Rime-tiger_code/blob/main/squirrel.yaml#L942
 patch:
   "preset_color_schemes/moon_river":
-    name: "江浸月／Moon River"
+    name: "江浸月／Moon River（修改版）"
     author: 半分星
 
     back_color: 0xE62F0504
