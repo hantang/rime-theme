@@ -1,0 +1,89 @@
+# ============================================================================
+# Squirrel（鼠须管 / macOS）主题字段完整参考
+# ============================================================================
+
+# ── 本文档未纳入（非配色/布局核心字段，超出本轮范围） ──
+# 顶层非 style 节点：
+# keyboard_layout, chord_duration, show_notifications_when,
+# status_icon, config_version, app_options
+
+style:
+  # ── 配色引用 ────────────────────────────────────────────────
+  color_scheme: native       # 浅色（默认）配色方案 id｜string，特殊值 native=使用系统语义色，不读取 preset_color_schemes｜SquirrelTheme.swift:229-231
+  color_scheme_dark: native  # 深色模式配色方案 id｜string，未设置时深色模式沿用 color_scheme｜SquirrelTheme.swift:228
+
+  # ── 排版布局 ────────────────────────────────────────────────
+  candidate_list_layout: stacked   # 候选框排列方式｜enum: stacked(堆叠，逐行)/linear(平铺，连成一行)，默认stacked(false)｜可被配色覆盖｜SquirrelTheme.swift:67,198,253
+  text_orientation: horizontal     # 文字排列方向｜enum: horizontal/vertical，默认horizontal(false)｜可被配色覆盖｜SquirrelTheme.swift:68,199,254
+  corner_radius: 0                 # 候选窗整体圆角半径(pt)｜float，默认0｜可被配色覆盖｜SquirrelTheme.swift:54,211,269
+  hilited_corner_radius: 0         # 高亮候选背景块圆角半径(pt)，含高亮编辑区｜float，默认0，一般≤corner_radius｜可被配色覆盖｜SquirrelTheme.swift:55,212,270
+  surrounding_extra_expansion: 0   # 非高亮候选背景框相对高亮框的缩放，负=缩小/正=放大｜float，默认0｜可被配色覆盖｜SquirrelTheme.swift:56,213,271
+  border_height: 0                 # 窗口边框高度(pt)，可正可负(负值收窄圆角避让留白)｜float，默认0｜可被配色覆盖｜SquirrelTheme.swift:59,214,272
+  border_width: 0                  # 窗口边框宽度(pt)｜float，默认0｜可被配色覆盖｜SquirrelTheme.swift:58,215,273
+  line_spacing: 0                  # 候选文字行间距(pt)，stacked布局下生效｜float，可负，默认0｜可被配色覆盖｜SquirrelTheme.swift:60,216,274
+  spacing: 0                       # 编辑区(preedit)与候选区之间的间距(pt)，非inline模式下生效｜float，可负，默认0｜可被配色覆盖｜SquirrelTheme.swift:61,217,275
+  base_offset: 0                   # 文字基线偏移(pt)，正数向上，负数向下｜float，默认0｜可被配色覆盖｜SquirrelTheme.swift:62,218,276
+  shadow_size: 0                   # 高亮候选阴影大小，>0时显示阴影｜float，默认0，取非负｜可被配色覆盖｜SquirrelTheme.swift:57,219,277
+
+  # ── 字体 ────────────────────────────────────────────────────
+  font_face: "Avenir"          # 全局字体，可用逗号分隔多个字体做级联后备，用"-"指定字重｜string｜可被配色覆盖｜SquirrelTheme.swift:73,221,261,283
+  font_point: 16               # 全局字号(pt)｜float，未设置时用系统字号｜可被配色覆盖｜SquirrelTheme.swift:76,222,262,284
+  label_font_face: "Avenir"    # 标签(序号)字体｜string，未设置回退到 font_face｜可被配色覆盖｜SquirrelTheme.swift:74,223,263,285
+  label_font_point: 12         # 标签字号(pt)｜float，未设置回退到 font_point｜可被配色覆盖｜SquirrelTheme.swift:77,224,264,286
+  comment_font_face: "Avenir"  # 注释字体｜string，未设置回退到 font_face｜可被配色覆盖｜SquirrelTheme.swift:75,225,265,287
+  comment_font_point: 16       # 注释字号(pt)｜float，未设置回退到 font_point｜可被配色覆盖｜SquirrelTheme.swift:78,226,266,288
+
+  # ── 编辑区(preedit)行为 ─────────────────────────────────────
+  inline_preedit: true       # 编码是否行内显示于键入位点(true)，还是与候选词同框显示(false)｜bool，默认false｜可被配色覆盖｜SquirrelTheme.swift:69,200,255
+  inline_candidate: false    # 首选候选是否行内显示于键入位点｜bool，默认false｜可被配色覆盖｜SquirrelTheme.swift:70,201,256
+  candidate_format: '[label]. [candidate] [comment]'  # 候选项文本模板，[label]/[candidate]/[comment] 三段可任意组合排列｜string，默认如左｜可被配色覆盖(旧式 %c/%@ 会被自动转换)｜SquirrelTheme.swift:80,175-188,208,260
+  status_message_type: mix   # 切换状态提示文案样式｜enum: long/short/mix，默认mix｜SquirrelTheme.swift:16-18,81,207
+
+  # ── 透明与视觉效果 ──────────────────────────────────────────
+  alpha: 1                  # 候选窗整体透明度｜float 0~1，默认1(不透明)｜可被配色覆盖｜SquirrelTheme.swift:63,210,268
+  translucency: false       # 是否启用毛玻璃背景(背景色半透明时可见)｜bool，默认false｜可被配色覆盖｜SquirrelTheme.swift:65,202,257
+  mutual_exclusive: false   # 半透明颜色是否不叠加(true=不叠加)｜bool，默认false｜可被配色覆盖｜SquirrelTheme.swift:66,203,258
+
+  # ── 交互 ────────────────────────────────────────────────────
+  show_paging: false     # 是否显示翻页可用性的小箭头提示｜bool，默认false｜可被配色覆盖｜SquirrelTheme.swift:71,205,259
+  memorize_size: true    # 候选窗吸附屏幕边缘时是否记住长度，减少位置跳动｜bool，默认true｜【不可被配色覆盖，仅读取全局 style】｜SquirrelTheme.swift:32,204
+
+  # 
+  #accent_text_color / warning_text_color 见下方 preset_color_schemes，属语义化注释色提案，社区文档未收录
+  #color_space: srgb        # 【与参考文档不同：不是 style 字段】仅存在于 preset_color_schemes/<id>/color_space，代码不读取顶层 style/color_space；社区示例中出现的 style: 顶层 color_space 写法实际不生效｜SquirrelTheme.swift:233
+
+
+preset_color_schemes:
+  # 配色方案。
+  color_scheme_id:
+    name: "字段参考"              # 展示名称，仅用于UI显示，无实际效果｜string
+    author: "rime-theme-studio"   # 作者名，仅用于UI显示｜string
+    color_space: srgb             # 本方案色域｜enum: srgb(默认)/display_p3(仅macOS 10.12+)｜只能写在方案内，不能写在 style 顶层｜SquirrelTheme.swift:233
+
+    # ── 窗口整体 ──
+    back_color: 0xffffff        # 候选窗背景色｜未设置回退系统 windowBackgroundColor｜SquirrelTheme.swift:35,234
+    border_color:                # 候选窗边框色｜未设置则不画边框(nil)｜SquirrelTheme.swift:40,239
+
+    # ── 编码/编辑区(preedit) ──
+    text_color: 0x000000            # 默认文字色，也是多个字段的最终回退色｜未设置回退系统 secondaryLabelColor｜SquirrelTheme.swift:42,241
+    hilited_text_color: 0x000000    # 编码高亮区文字色｜未设置回退到 text_color｜SquirrelTheme.swift:43,242
+    hilited_back_color:              # 编码高亮区背景色(=highlightedPreeditColor)｜未设置为nil(不画背景块)，同时是 hilited_candidate_back_color 的默认来源｜SquirrelTheme.swift:36-37,235-236
+    preedit_back_color:              # 编辑区(拼音行)背景色，inline_preedit:false 时可见｜未设置为nil｜SquirrelTheme.swift:38,237
+
+    # ── 候选项(非高亮) ──
+    candidate_text_color: 0x000000  # 非高亮候选文字色｜未设置回退到 text_color｜SquirrelTheme.swift:44,243
+    candidate_back_color:            # 非高亮候选背景色｜未设置为nil——即不画候选背景框，纯文本显示｜SquirrelTheme.swift:39,238
+
+    # ── 高亮候选(选中候选) ──
+    hilited_candidate_text_color: 0xffffff   # 高亮候选文字色｜未设置回退到 hilited_text_color｜SquirrelTheme.swift:45,244
+    hilited_candidate_back_color: 0x000000   # 高亮候选背景色｜未设置回退到 hilited_back_color(=编码高亮背景)｜SquirrelTheme.swift:236
+
+    # ── 标签与注释 ──
+    label_color:                       # 候选序号颜色｜未设置为nil，渲染时按 candidateTextColor/backgroundColor 混合色兜底｜SquirrelTheme.swift:46,245
+    hilited_candidate_label_color:      # 高亮候选序号颜色（等同weasel中hilited_label_color）｜未设置为nil，渲染时按 highlightedCandidateTextColor/highlightedBackColor 混合色兜底｜SquirrelTheme.swift:47,246
+    comment_text_color:                 # 注释文字色(如拼音提示)｜未设置为nil，渲染时回退到 candidateTextColor｜SquirrelTheme.swift:48,247
+    hilited_comment_text_color:         # 高亮候选注释文字色｜未设置为nil，渲染时回退到 highlightedCandidateTextColor｜SquirrelTheme.swift:49,248
+
+    # ── 语义化注释色（squirrel 独有） ──
+    # accent_text_color:    # 强调注释色，可选语义色，未设置为nil，具体用途取决于输入方案是否输出对应标记｜SquirrelTheme.swift:51,249
+    # warning_text_color:   # 警告注释色，同上｜SquirrelTheme.swift:52,250

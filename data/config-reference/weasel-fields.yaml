@@ -1,0 +1,118 @@
+# ============================================================================
+# Weasel（小狼毫 / Windows）主题字段完整参考
+# ============================================================================
+
+# 顶层非 style 节点：
+# config_version, app_options, show_notifications, show_notifications_time, global_ascii
+
+style:
+  # ── 配色引用 ────────────────────────────────────────────────
+  color_scheme: aqua        # 浅色（默认）配色方案 id｜string，取值需在 preset_color_schemes 中定义｜RimeWithWeasel.cpp:1357-1359
+  color_scheme_dark: aqua   # 深色模式配色方案 id｜string，仅 Windows 10 1809+ 生效，未设置时沿用 color_scheme｜RimeWithWeasel.cpp:129,239,588
+
+  # ── 字体 ────────────────────────────────────────────────────
+  font_face: "Microsoft YaHei"          # 全局字体，label/comment 未单独设置时的后备字体｜string，默认空｜RimeWithWeasel.cpp:1168
+  label_font_face: "Microsoft YaHei"    # 标签(序号)字体｜string，未设置回退到 font_face｜RimeWithWeasel.cpp:1170-1176
+  comment_font_face: "Microsoft YaHei"  # 注释字体｜string，未设置回退到 font_face｜RimeWithWeasel.cpp:1172-1178
+  font_point: 14                        # 全局字号｜int，默认12（<=0时强制设为12）｜RimeWithWeasel.cpp:1180-1182
+  label_font_point: 14                  # 标签字号｜int，未设置回退到 font_point（取绝对值）｜RimeWithWeasel.cpp:1183-1184
+  comment_font_point: 14                # 注释字号｜int，未设置回退到 font_point（取绝对值）｜RimeWithWeasel.cpp:1185-1186
+
+  # ── 编辑区(preedit)行为 ─────────────────────────────────────
+  inline_preedit: false                  # 编码是否行内显示（false=编码显示在候选框内）｜bool，默认false｜fullscreen布局下会被强制设为false｜RimeWithWeasel.cpp:1189-1190,1276
+  preedit_type: composition              # 编辑区内容｜enum: composition(编码)/preview(选中候选预览)/preview_all(全部候选预览)，默认composition｜RimeWithWeasel.cpp:1193-1199
+  candidate_abbreviate_length: 0         # 候选项略写长度，超过则省略号代替，0=不启用｜int，默认0（取绝对值）｜RimeWithWeasel.cpp:1187-1188
+  label_format: "%s."                    # 标签格式模板｜string，默认"%s."（效果如"1." "2."）｜struct默认值 WeaselIPCData.h:316，读取 RimeWithWeasel.cpp:1251
+  mark_text: ""                          # 选中候选标签前的标记字符，需配合配色中 hilited_mark_color｜string，默认空｜RimeWithWeasel.cpp:1252
+
+  # ── 排版方向 ────────────────────────────────────────────────
+  # weasel 用单一 layout_type 枚举(VERTICAL/HORIZONTAL/VERTICAL_TEXT/*_FULLSCREEN)承载排版+朝向+全屏，
+  # 下面几个布尔字段都是在写入同一个 layout_type，互相叠加/覆盖，注意顺序敏感。
+  horizontal: false                       # 候选项横排(true)/竖排(false)｜bool，决定基础 layout_type｜RimeWithWeasel.cpp:1226-1227
+  fullscreen: false                       # 候选窗口全屏显示｜bool，仅在显式设置时生效(未设置不改变layout_type)；全屏时 inline_preedit 被强制关闭且禁用阴影｜RimeWithWeasel.cpp:1232-1236,1273-1298
+  vertical_text: false                    # 竖排文本模式(在 horizontal 基础上叠加)｜bool，等价于 text_orientation: vertical｜RimeWithWeasel.cpp:1237-1238
+  #text_orientation: horizontal           # 【与参考文档不同：非独立字段，是 vertical_text 的另一种写法】取值 horizontal|vertical，vertical 时等同设置 vertical_text:true；取horizontal时不会撤销已设置的vertical_text｜RimeWithWeasel.cpp:1243-1250
+  vertical_text_left_to_right: false      # 竖排文本时是否从左到右｜bool，默认false，仅显式设置时生效｜RimeWithWeasel.cpp:1239-1240
+  vertical_text_with_wrap: false          # 竖排文本是否自动换行｜bool，默认false，仅显式设置时生效｜RimeWithWeasel.cpp:1241-1242
+  vertical_auto_reverse: false            # 竖排候选窗位于光标上方时是否倒序排列｜bool，默认false｜RimeWithWeasel.cpp:1191-1192
+  #layout/type: horizontal                # 【文档未提及】等价于上面几个布尔字段的合并写法，取值 vertical|horizontal|vertical_text|vertical+fullscreen|horizontal+fullscreen，优先级高于单独的 horizontal/fullscreen/vertical_text｜RimeWithWeasel.cpp:1263-1271
+  #layout/align_type: center              # 候选窗对齐方式｜enum: top/center/bottom，默认bottom｜RimeWithWeasel.cpp:1215-1221
+
+  # ── 交互 ────────────────────────────────────────────────────
+  hover_type: none                 # 鼠标悬停候选项时的动作｜enum: none/semi_hilite/hilite，默认none｜RimeWithWeasel.cpp:1209-1214
+  paging_on_scroll: false          # 候选窗滚轮行为｜bool，true=翻页，false=选中下一候选，默认false｜RimeWithWeasel.cpp:1228-1229
+  click_to_capture: false          # 点击候选项创建截图｜bool，默认false｜RimeWithWeasel.cpp:1230-1231
+  enhanced_position: false         # 无法定位候选框时在窗口左上角显示｜bool，默认false【与参考文档不同：docs/config 标注默认true，代码初始化与首次加载缺省均为false】｜WeaselIPCData.h:307，RimeWithWeasel.cpp:1352-1353
+  ascii_tip_follow_cursor: false   # 切换ASCII模式提示是否跟随输入光标(而非鼠标)｜bool，默认false｜RimeWithWeasel.cpp:1224-1225
+  display_tray_icon: false         # 是否在托盘显示独立于语言栏的额外图标｜bool，默认false｜RimeWithWeasel.cpp:1222-1223
+  antialias_mode: default          # 次像素反锯齿设定｜enum: default/force_dword/cleartype/grayscale/aliased，默认default｜RimeWithWeasel.cpp:1200-1208
+
+  # ── 布局几何（layout 嵌套块，参考文档 docs/config/weasel.style.yaml 完全遗漏此节点） ──
+  # 所有 key 实际路径均为 style/layout/<key>，均为像素整数，除注明外默认0，且均取绝对值(不支持负数抵消)
+  layout:
+    min_width: 160          # 候选窗最小宽度(px)｜int，默认0｜RimeWithWeasel.cpp:1256
+    max_width: 0             # 候选窗最大宽度(px)，0=不限制；全屏布局下会被强制设为0｜int，默认0｜RimeWithWeasel.cpp:1257,1275
+    min_height: 0            # 候选窗最小高度(px)｜int，默认0｜RimeWithWeasel.cpp:1258-1259
+    max_height: 0            # 候选窗最大高度(px)，0=不限制｜int，默认0｜RimeWithWeasel.cpp:1260-1261
+    border: 3                # 窗口边框宽度(px)，等价别名 border_width｜int，默认0｜RimeWithWeasel.cpp:1278-1279
+    #border_width: 3          # border 的别名，二者同一字段，border 优先｜RimeWithWeasel.cpp:1278-1279
+    margin_x: 12             # 候选窗左右内边距(px)｜int，默认0，最终值不小于 hilite_padding_x｜RimeWithWeasel.cpp:1280,1347-1348
+    margin_y: 12             # 候选窗上下内边距(px)｜int，默认0，最终值不小于 hilite_padding_y｜RimeWithWeasel.cpp:1281,1349-1350
+    spacing: 10              # 编辑区(preedit)与候选区之间的间距(px)｜int，默认0，会被 hilite_padding_y*2 顶起｜RimeWithWeasel.cpp:1282,1308-1311
+    candidate_spacing: 5     # 候选项之间的间距(px)｜int，默认0，会被 hilite_padding*2 顶起｜RimeWithWeasel.cpp:1283-1284,1312-1324
+    hilite_spacing: 4        # 序号与候选文字之间的间距(px)｜int，默认0，非inline_preedit时会被hilite_padding顶起｜RimeWithWeasel.cpp:1285-1286,1326-1327
+    hilite_padding: 2        # hilite_padding_x/y 的统一别名(同时设置两者)｜int，默认0｜RimeWithWeasel.cpp:1287-1292
+    #hilite_padding_x: 2      # 高亮候选背景块左右内边距(px)｜int，未设置回退到 hilite_padding｜RimeWithWeasel.cpp:1287-1289
+    #hilite_padding_y: 2      # 高亮候选背景块上下内边距(px)｜int，未设置回退到 hilite_padding｜RimeWithWeasel.cpp:1290-1292
+    round_corner: 4          # 高亮候选背景块圆角半径(px)，等价别名 hilited_corner_radius｜int，默认0｜RimeWithWeasel.cpp:1301-1303
+    #hilited_corner_radius: 4 # round_corner 的别名，二者同一字段，hilited_corner_radius 优先｜RimeWithWeasel.cpp:1301-1303
+    corner_radius: 4          # 候选窗整体圆角半径(px)，未设置回退到 round_corner 的值｜int，默认0｜RimeWithWeasel.cpp:1304-1306
+    shadow_radius: 0          # 阴影模糊半径(px)，需配合配色中 shadow_color 等阴影色｜int，默认0；全屏布局下强制为0｜RimeWithWeasel.cpp:1293-1298
+    shadow_offset_x: 4        # 阴影水平偏移(px)｜int，默认0｜RimeWithWeasel.cpp:1299
+    shadow_offset_y: 4        # 阴影垂直偏移(px)｜int，默认0｜RimeWithWeasel.cpp:1300
+    baseline: 0                # 文字基线偏移，字号百分比，0=不启用｜int，默认0｜RimeWithWeasel.cpp:1253
+    linespacing: 0              # 行间距，字号百分比，0=不启用｜int，默认0｜RimeWithWeasel.cpp:1254-1255
+
+  # ── 本文档未纳入（非配色/布局核心字段，超出本轮范围） ──
+  # current_zhung_icon / current_ascii_icon / current_half_icon / current_full_icon：状态栏图标自定义路径
+
+preset_color_schemes:
+  # 配色方案
+  color_scheme_id:
+    name: "字段参考"              # 展示名称，仅用于UI显示，无实际效果｜string
+    author: "rime-theme-studio"  # 作者名，仅用于UI显示｜string
+    color_format: abgr           # 本方案颜色写法格式｜enum: abgr(默认,0xaabbggrr)/argb(0xaarrggbb)/rgba(0xrrggbbaa)｜RimeWithWeasel.cpp:1376-1380
+
+    # ── 窗口整体 ──
+    back_color: 0xffffffff        # 候选窗背景色｜默认不透明白 0xffffffff｜RimeWithWeasel.cpp:1383
+    border_color: 0x000000        # 候选窗边框色｜未设置回退到 text_color｜RimeWithWeasel.cpp:1390
+    shadow_color:                 # 候选窗阴影色，需配合 layout/shadow_radius｜默认全透明(0，不显示)｜RimeWithWeasel.cpp:1384
+
+    # ── 编码/编辑区(preedit) ──
+    text_color: 0x000000                  # 默认文字色，也是多个字段的最终回退色｜默认不透明黑 0xff000000｜RimeWithWeasel.cpp:1387
+    hilited_text_color: 0x000000          # 编码高亮区文字色｜未设置回退到 text_color｜RimeWithWeasel.cpp:1391
+    hilited_back_color: 0xffffff          # 编码高亮区背景色｜未设置回退到 back_color｜RimeWithWeasel.cpp:1392
+    hilited_shadow_color:                 # 编码高亮区阴影色｜默认全透明｜RimeWithWeasel.cpp:1399
+
+    # ── 候选项(非高亮) ──
+    candidate_text_color: 0x000000        # 非高亮候选文字色｜未设置回退到 text_color｜RimeWithWeasel.cpp:1388
+    candidate_back_color:                 # 非高亮候选背景色｜默认透明(0，不画背景块)｜RimeWithWeasel.cpp:1389
+    candidate_border_color:               # 非高亮候选边框色｜默认透明｜RimeWithWeasel.cpp:1401
+    candidate_shadow_color:               # 非高亮候选阴影色｜默认透明｜RimeWithWeasel.cpp:1400
+
+    # ── 高亮候选(选中候选) ──
+    hilited_candidate_text_color: 0xffffff        # 高亮候选文字色｜未设置回退到 hilited_text_color｜RimeWithWeasel.cpp:1393-1394
+    hilited_candidate_back_color: 0x000000        # 高亮候选背景色｜未设置回退到 hilited_back_color｜RimeWithWeasel.cpp:1395-1396
+    hilited_candidate_border_color:               # 高亮候选边框色｜默认透明｜RimeWithWeasel.cpp:1402-1403
+    hilited_candidate_shadow_color:               # 高亮候选阴影色｜默认透明｜RimeWithWeasel.cpp:1397-1398
+
+    # ── 标签与注释 ──
+    label_color:                          # 候选序号颜色｜未设置则用 candidate_text_color 与 candidate_back_color 的混合色｜RimeWithWeasel.cpp:1404-1405
+    hilited_label_color:                  # 高亮候选序号颜色(等同squirrel中hilited_candidate_label_color)｜未设置则用 hilited_candidate_text_color 与 hilited_candidate_back_color 的混合色｜RimeWithWeasel.cpp:1406-1408
+    comment_text_color:                   # 注释文字色(如拼音提示)｜未设置回退到 label_color(的最终值)｜RimeWithWeasel.cpp:1409-1410
+    hilited_comment_text_color:           # 高亮候选注释文字色｜未设置回退到 hilited_label_color(的最终值)｜RimeWithWeasel.cpp:1411-1412
+
+    # ── 翻页与标记（weasel 独有字段） ──
+    hilited_mark_color:                   # 选中候选标签前的标记色，配合 style/mark_text 使用｜默认透明｜RimeWithWeasel.cpp:1413
+    prevpage_color:                       # 上一页箭头颜色，inline_preedit:false 时可见，不设置则不显示箭头｜默认透明｜RimeWithWeasel.cpp:1385
+    nextpage_color:                       # 下一页箭头颜色，同上｜默认透明｜RimeWithWeasel.cpp:1386
