@@ -1,0 +1,19 @@
+# https://github.com/tsaoshuang/Rime-tiger_code/blob/main/squirrel.yaml
+patch:
+  "preset_color_schemes/easy_dark":
+    name: "蓝黑"
+    author: "木易"
+
+    back_color: 0x36261F
+    candidate_text_color: 0xDBDBDB
+    comment_text_color: 0xA8A8A8
+    hilited_back_color: 0x471885
+    hilited_candidate_back_color: 0x63453A
+    hilited_candidate_label_color: 0xFFFFFF
+    hilited_candidate_text_color: 0xDBDBDB
+    hilited_comment_text_color: 0xA8A8A8
+    hilited_text_color: 0xD6D6D6
+    label_color: 0xDBDBDB
+    text_color: 0xD6D6D6
+
+    # corner_radius: 5

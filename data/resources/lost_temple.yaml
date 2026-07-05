@@ -1,0 +1,13 @@
+# https://github.com/rime/weasel/blob/master/output/data/weasel.yaml
+patch:
+  "preset_color_schemes/lost_temple":
+    name: 孤寺／Lost Temple
+    author: 佛振 <chen.sst@gmail.com>, based on ir_black
+
+    text_color: 0xE8F3F6
+    back_color: 0x444444
+    border_color: 0x444444
+    hilited_text_color: 0x82E6CA
+    hilited_back_color: 0x222222
+    hilited_candidate_text_color: 0x000000
+    hilited_candidate_back_color: 0x82E6CA

@@ -1,0 +1,36 @@
+# https://github.com/OscarXWei/Squirrel-Skin-Collection/blob/main/squirrel.custom.yaml
+# https://simgv.com/2022/01/11/rime-skin/
+patch:
+  "preset_color_schemes/emperor":
+    name: "皇帝/emperor"
+
+    back_color: 0x00FBFF
+    border_color: 0x000000
+    candidate_text_color: 0x000000
+    comment_text_color: 0x0026FF
+    label_color: 0x922194
+    hilited_candidate_back_color: 0x00FBFF
+    hilited_candidate_text_color: 0x0026FF
+    hilited_comment_text_color: 0xFFFFFF
+    hilited_candidate_label_color: 0x00FBFF
+    preedit_back_color: 0x00FBFF
+    text_color: 0x3FFFFFFF
+    hilited_back_color: 0x00FBFF
+    hilited_text_color: 0x0026FF
+
+    # font_face: "STKaitiSC-Bold"
+    # font_point: 15
+    # label_font_face: "STKaitiSC-Bold"
+    # label_font_point: 14
+    # comment_font_face: "STKaitiSC-Regular"
+    # comment_font_point: 16
+    # candidate_list_layout: stacked
+    # text_orientation: vertical
+    # inline_preedit: false
+    # translucency: true
+    # corner_radius: 4
+    # hilited_corner_radius: 5
+    # border_height: 5
+    # line_spacing: 5
+    # spacing: 5
+    # color_space: srgb

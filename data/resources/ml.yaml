@@ -1,0 +1,14 @@
+# https://github.com/dearxs/Rime-Themes/blob/master/squirrel.custom.yaml
+patch:
+  "preset_color_schemes/ml":
+    name: Mac Light
+    author: Khan
+
+    back_color: 0xFFFFFE
+    text_color: 0x575655
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_candidate_back_color: 0xD65A00
+    hilited_candidate_label_color: 0xFFFFFF
+    candidate_text_color: 0x575655
+    label_color: 0x8C8B8A
+    comment_text_color: 0x575655

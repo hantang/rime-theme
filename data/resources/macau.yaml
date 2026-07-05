@@ -1,0 +1,17 @@
+# https://github.com/rime/weasel/blob/master/output/data/weasel.yaml
+patch:
+  "preset_color_schemes/macau":
+    name: "澳門／Macau"
+    author: "Patricivs <ipatrickmac@me.com>"
+
+    text_color: 0x00D9FF
+    back_color: 0x81A300
+    border_color: 0x81A300
+    label_color: 0xFFFFFF
+    hilited_text_color: 0xFFFFFF
+    hilited_back_color: 0x00D9FF
+    candidate_text_color: 0xFFFFFF
+    comment_text_color: 0xFFFFFF
+    hilited_candidate_text_color: 0x00D9FF
+    hilited_comment_text_color: 0x00D9FF
+    hilited_candidate_back_color: 0xFFFFFF

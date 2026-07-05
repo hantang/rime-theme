@@ -1,0 +1,34 @@
+# https://github.com/0xffan/rose-pine-rime/blob/main/squirrel/rose_pine_color_schemes.yaml
+# https://github.com/0xffan/rose-pine-rime/blob/main/weasel/rose_pine_color_schemes.yaml
+patch:
+  "preset_color_schemes/rose_pine_dawn":
+    name: "Rosé Pine Dawn"
+    author: "0xffan"
+    description: "All natural pine, faux fur and a bit of soho vibes for the classy minimalist"
+
+    color_space: display_p3
+    back_color: 0xF3FAFF
+    candidate_text_color: 0xD8795257
+    comment_text_color: 0xD8A59398
+    label_color: 0xD8A59398
+    hilited_candidate_back_color: 0xE1E9F2
+    hilited_candidate_text_color: 0xD87A63B4
+    hilited_comment_text_color: 0xDAA59398
+    hilited_candidate_label_color: 0xD9A59398
+    text_color: 0xD9A59398
+    hilited_text_color: 0xD8795257
+
+    # # weasel
+    # text_color: 0xD8795257
+    # hilited_text_color: 0x795257
+    # hilited_candidate_text_color: 0x7A63B4
+    # hilited_comment_text_color: 0xCDCACE
+    # candidate_text_color: 0xDA795257
+    # shadow_color: 0x302E1D1F
+    # border_color: 0xCDCACE
+    # hilited_back_color: 0xF3FAFF
+    # hilited_mark_color: 0x00836928
+    # hilited_label_color: 0x9F795257
+    # candidate_back_color: 0xF3FAFF
+    # prevpage_color: 0xD8937579
+    # nextpage_color: 0xD8937579

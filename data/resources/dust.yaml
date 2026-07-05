@@ -1,0 +1,30 @@
+# https://github.com/rime/squirrel/blob/master/data/squirrel.yaml
+# https://gist.github.com/laubonghaudoi/40f4ad4036a321a21fb2f32229892f55
+patch:
+  "preset_color_schemes/dust":
+    name: 浮尘／Dust
+    author: Superoutman <asticosmo@gmail.com>
+
+    back_color: 0xEEFFFFFF                                  # 候选条背景色
+    border_color: 0xE0B693                                  # 边框色
+    label_color: 0xCBCBCB                                   # 预选栏编号颜色
+    candidate_text_color: 0x555555                          # 预选项文字颜色
+    text_color: 0x424242                                    # 拼音行文字颜色，24位色值，16进制，BGR顺序
+    comment_text_color: 0x999999                            # 拼音等提示文字颜色
+    hilited_text_color: 0x9E9E9E                            # 高亮拼音 (需要开启内嵌编码)
+    hilited_candidate_text_color: 0x000000                  # 第一候选项文字颜色
+    hilited_candidate_back_color: 0xFFF0E4                  # 第一候选项背景背景色
+    hilited_candidate_label_color: 0x555555                 # 第一候选项编号颜色
+    hilited_comment_text_color: 0x9E9E9E                    # 注解文字高亮
+
+    # horizontal: true # 水平排列
+    # candidate_list_layout: linear                      # 水平排列
+    # inline_preedit: true                               # 单行显示，false双行显示
+    # candidate_format: "%c\u2005%@\u2005"               # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间。
+    # corner_radius: 2                                   # 候选条圆角
+    # border_height: 3                                   # 窗口边界高度，大于圆角半径才生效
+    # border_width: 8                                    # 窗口边界宽度，大于圆角半径才生效
+    # font_face: "HYQiHei-55S Book,HanaMinA Regular"     # 候选词字体
+    # font_point: 14                                     # 候选字词大小
+    # label_font_face: "SimHei"                          # 候选词编号字体
+    # label_font_point: 10                               # 候选编号大小

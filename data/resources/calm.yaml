@@ -1,0 +1,28 @@
+# https://github.com/OscarXWei/Squirrel-Skin-Collection/blob/main/squirrel.custom.yaml
+# https://simgv.com/2022/01/11/rime-skin/
+patch:
+  "preset_color_schemes/calm":
+    name: "安静"
+
+    border_color: 0x8E8E93
+    back_color: 0xEFEFF4
+    label_color: 0x8E8E93
+    hilited_candidate_text_color: 0x000000
+    hilited_candidate_back_color: 0x00FFFFFF
+    hilited_candidate_label_color: 0x888888
+    hilited_comment_text_color: 0xF19C38
+    candidate_text_color: 0x888888
+    comment_text_color: 0x5AC461
+    hilited_text_color: 0x8E8E93
+    hilited_back_color: 0xEFEFF4
+
+    # border_height: 5
+    # border_width: 10
+    # candidate_format: "%c %@ "
+    # corner_radius: 5
+    # font_point: 20
+    # horizontal: true
+    # inline_preedit: true
+    # label_font_point: 18
+    # line_spacing: 5
+    # spacing: 5

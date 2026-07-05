@@ -1,0 +1,17 @@
+# https://github.com/rime/weasel/blob/master/output/data/weasel.yaml
+patch:
+  "preset_color_schemes/brasil":
+    name: "笆悉／Brasil"
+    author: "Patricivs <ipatrickmac@me.com>"
+
+    text_color: 0xFFFFFF
+    back_color: 0x559311
+    border_color: 0x559311
+    label_color: 0xFFFFFF
+    hilited_text_color: 0xFFFFFF
+    hilited_back_color: 0x7D3617
+    candidate_text_color: 0xFFFFFF
+    comment_text_color: 0xFFFFFF
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_comment_text_color: 0xFFFFFF
+    hilited_candidate_back_color: 0x16C7F7

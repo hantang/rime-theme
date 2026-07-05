@@ -1,0 +1,37 @@
+# https://github.com/OscarXWei/Squirrel-Skin-Collection/blob/main/squirrel.custom.yaml
+# https://simgv.com/2022/01/11/rime-skin/
+patch:
+  "preset_color_schemes/hoai_duc":
+    name: 怀德 / hoai_duc
+    author: "Oscar Wei"
+
+    border_color: 0xFFFFFF                          # 颜色 - 边框
+    back_color: 0xFFFD00
+    label_color: 0xAAAAAA                           # 颜色 - 候选序号
+    preedit_back_color: 0x364572
+    hilited_candidate_text_color: 0xFF3304
+    hilited_candidate_back_color: 0xFFFD00
+    hilited_candidate_label_color: 0x884F11FA       # 颜色 - 首选候选词 - 序号
+    hilited_comment_text_color: 0xF19C38            # 颜色 - 首选候选词 - 提示编码
+    candidate_text_color: 0x222222                  # 颜色 - 其它候选词 - 文字
+    comment_text_color: 0x5AC461                    # 颜色 - 其它候选词 - 提示编码
+    hilited_text_color: 0x8E8E93
+    hilited_back_color: 0xEFEFF4
+
+    # alpha: 1.0                                # 候选窗口透明度：符点型数据，小数点形式，不然出错无法正常显示皮肤
+    # base_offset: 0                           # 文字基线调整
+    # border_height: 5                          # 边距 - 面板上下
+    # border_width: 0                           # 宽度 - 边框
+    # candidate_format: "%c %@ "               # 候选词格式，后面多个空格是为了增加候选词之间的距离
+    # comment_font_face: PingFang SC            # 字体 - 候选词编码的提示
+    # comment_font_point: 16                    # 字体大小 - 候选词编码的提示
+    # corner_radius: 5                          # 候选框圆角大小
+    # font_face: PingFang SC                    # 字体 - 候选文字
+    # font_point: 15                            # 字体大小 - 候选
+    # hilited_corner_radius: 5                  # 圆角 - 首选候选词
+    # horizontal: true                         # 是否横向 true 或 false
+    # inline_preedit: true
+    # label_font_face: Skia                     # 字体 - 候选数字
+    # label_font_point: 14                      # 字体大小 - 候选序号
+    # line_spacing: 5                          # horizontal 为 false 时，上下候选的间隔大小
+    # spacing: 5                                # 当 inline_preedit 为 false 时，编码会出现在候选面板中，该值控制编码与候选词之间的距离

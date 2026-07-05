@@ -1,0 +1,41 @@
+# https://github.com/OscarXWei/Squirrel-Skin-Collection/blob/main/squirrel.custom.yaml
+# https://simgv.com/2022/01/11/rime-skin/
+patch:
+  "preset_color_schemes/liberate":
+    name: "解放/liberate"
+
+    back_color: 0xFF8600
+    border_color: 0x000000
+    candidate_text_color: 0xFFFD00
+    comment_text_color: 0x0093FF
+    label_color: 0x922194
+    hilited_candidate_back_color: 0xFF8600
+    hilited_candidate_text_color: 0x00EAE9
+    hilited_comment_text_color: 0xFFFFFF
+    hilited_candidate_label_color: 0x00FBFF
+    preedit_back_color: 0x00FBFF
+    text_color: 0x3FFFFFFF
+    hilited_back_color: 0x00FBFF
+    hilited_text_color: 0x0026FF
+
+    # alpha: 1.0
+    # base_offset: 0
+    # border_height: 5
+    # border_width: 0
+    # candidate_format: "%c %@ "
+    # candidate_list_layout: linear
+    # color_space: srgb
+    # comment_font_face: "Pingfang SC"
+    # comment_font_point: 16
+    # corner_radius: 4
+    # font_face: "PingFang SC"
+    # font_point: 16
+    # hilited_corner_radius: 5
+    # hilited_corner_radius: 5
+    # horizontal: true
+    # inline_preedit: true
+    # label_font_face: "Pingfang SC"
+    # label_font_point: 14
+    # line_spacing: 5
+    # spacing: 5
+    # translucency: true

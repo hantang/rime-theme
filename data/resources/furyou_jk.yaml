@@ -1,0 +1,28 @@
+# https://www.hanbun-hoshi.top/posts/rime_color_scheme/
+patch:
+  "preset_color_schemes/furyou_jk":
+    name: 不良女高／Furyou JK
+    author: 半分星
+
+    back_color: 0x311200
+    shadow_color: 0x00000000
+    border_color: 0x00000000
+    text_color: 0xFFFFFF
+    hilited_text_color: 0xFFFFFF
+    hilited_back_color: 0x1818B4
+    hilited_shadow_color: 0x00000000
+    hilited_mark_color: 0x682700
+    hilited_label_color: 0xFFFFFF
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_comment_text_color: 0xFFFFFF
+    hilited_candidate_back_color: 0x1818B4
+    hilited_candidate_border_color: 0x00000000
+    hilited_candidate_shadow_color: 0x00000000
+    label_color: 0xFFFFFF
+    candidate_text_color: 0xFFE9E5
+    comment_text_color: 0xFFE9E5
+    candidate_back_color: 0x00000000
+    candidate_border_color: 0x00000000
+    candidate_shadow_color: 0x00000000
+    prevpage_color: 0x00000000
+    nextpage_color: 0x00000000

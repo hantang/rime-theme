@@ -1,0 +1,28 @@
+# https://github.com/tsaoshuang/Rime-tiger_code/blob/main/squirrel.yaml#L942
+patch:
+  "preset_color_schemes/moon_river":
+    name: "江浸月／Moon River"
+    author: 半分星
+
+    back_color: 0xE62F0504
+    shadow_color: 0x00000000
+    border_color: 0x000000
+    text_color: 0xA6F2FF
+    hilited_text_color: 0x000000
+    hilited_back_color: 0x8BFFFC
+    hilited_shadow_color: 0x00000000
+    hilited_mark_color: 0x1BECFF
+    hilited_label_color: 0xFFFFFF
+    hilited_candidate_text_color: 0xA6F2FF
+    hilited_comment_text_color: 0xFFE3E0
+    hilited_candidate_back_color: 0xA4BD908A
+    hilited_candidate_border_color: 0x00000000
+    hilited_candidate_shadow_color: 0x00000000
+    label_color: 0xFFFFFF
+    candidate_text_color: 0xFFFFFF
+    comment_text_color: 0xFFFFFF
+    candidate_back_color: 0x3F000000
+    candidate_border_color: 0x00000000
+    candidate_shadow_color: 0x00000000
+    prevpage_color: 0x00000000
+    nextpage_color: 0x00000000

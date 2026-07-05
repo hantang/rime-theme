@@ -1,0 +1,28 @@
+# https://www.hanbun-hoshi.top/posts/rime_color_scheme/
+patch:
+  "preset_color_schemes/morning_twilight":
+    name: "晨光始／Morning Twilight"
+    author: 半分星
+
+    back_color: 0xD1E2F8
+    shadow_color: 0x00000000
+    border_color: 0x00000000
+    text_color: 0x000000
+    hilited_text_color: 0x91EBFF
+    hilited_back_color: 0x5B3F1B
+    hilited_shadow_color: 0x00000000
+    hilited_mark_color: 0x1FFFFA
+    hilited_label_color: 0xFFFFFF
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_comment_text_color: 0xFFFFFF
+    hilited_candidate_back_color: 0x5B3F1B
+    hilited_candidate_border_color: 0x00000000
+    hilited_candidate_shadow_color: 0x00000000
+    label_color: 0x000000
+    candidate_text_color: 0x000000
+    comment_text_color: 0x4A5352
+    candidate_back_color: 0xD1E2F8
+    candidate_border_color: 0x00000000
+    candidate_shadow_color: 0x00000000
+    prevpage_color: 0x00000000
+    nextpage_color: 0x00000000

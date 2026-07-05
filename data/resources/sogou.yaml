@@ -1,0 +1,40 @@
+# https://github.com/OscarXWei/Squirrel-Skin-Collection/blob/main/squirrel.custom.yaml
+# https://simgv.com/2022/01/11/rime-skin/
+patch:
+  "preset_color_schemes/Sogou":
+    name: "搜狗／Sogou"
+    author:  "Oscar Wei"
+
+    hilited_text_color: 0xFF3304                    # 颜色 - 输入中 - 编码*
+    hilited_back_color: 0xEFEFF4                    # 颜色 - 输入中 - 背景*
+    hilited_candidate_text_color: 0x1E37FF          # 颜色 - 首选候选词 - 文字*
+    hilited_candidate_back_color: 0xFFFFFF          # 颜色 - 首选候选词 - 背景  8位的前两位是颜色透明度，00就是透明，FF就是不透明*
+    hilited_candidate_label_color: 0x0026FF         # 颜色 - 首选候选词 - 序号*
+    hilited_comment_text_color: 0x999999            # 颜色 - 首选候选词 - 提示编码*
+    candidate_text_color: 0xF26D3E                  # 颜色 - 其它候选词 - 文字*
+    comment_text_color: 0x999999                    # 颜色 - 其它候选词 - 提示编码*
+    border_color: 0xE0B693                          # 颜色 - 边框*
+    back_color: 0xFFFFFF                            # 颜色 - 面板背景*
+    label_color: 0xFF3304                           # 颜色 - 候选序号*
+    preedit_back_color: 0xFFFFFF
+    text_color: 0xFF3304
+
+    # alpha: 1.0                                # 候选窗口透明度：符点型数据，小数点形式，不然出错无法正常显示皮肤*
+    # base_offset: 0                           # 文字基线调整*
+    # border_height: 3                         # 边距 - 面板上下*
+    # border_width: 8                           # 宽度 - 边框*
+    # candidate_format: "%c %@ "               # 候选词格式，后面多个空格是为了增加候选词之间的距离* %c 是候选序号 %@ 是候选词*
+    # candidate_list_layout: linear
+    # color_space: srgb
+    # comment_font_face: HiraginoSansCNS-W3         # 字体 - 候选词编码的提示*
+    # comment_font_point: 16
+    # corner_radius: 2                       # 候选框圆角大小*
+    # font_face: HiraginoSansCNS-W3               # 字体 - 候选文字*
+    # font_point: 20                            # 字体大小 - 候选*
+    # hilited_corner_radius: 5                  # 圆角 - 首选候选词*
+    # horizontal: true                         # 是否横向 true 或 false*
+    # inline_preedit: false                     # 输入的编码是否直接写入到输入框中，如果为 false，未上屏的编码就会写在候选框中*
+    # label_font_face: HiraginoSansCNS-W3                 # 字体 - 候选数字*
+    # label_font_point: 14                      # 字体大小 - 候选序号*
+    # line_spacing: 5                          # horizontal 为 false 时，上下候选的间隔大小*
+    # spacing: 5                                # 当 inline_preedit 为 false 时，编码会出现在候选面板中，该值控制编码与候选词之间的距离*

@@ -1,0 +1,15 @@
+# https://github.com/thebaldingken/rime-skin-yellowish
+patch:
+  "preset_color_schemes/yellowish":
+    name: "鐳射檸檬／Laser Lemon"
+    author: thebaldingken
+
+    back_color: 0x424242
+    border_color: 0x424242
+    candidate_text_color: 0xEAFFFE
+    comment_text_color: 0xC9C9C9
+    hilited_back_color: 0x424242
+    hilited_candidate_back_color: 0x5C5C5C
+    hilited_candidate_text_color: 0x62FCFC
+    hilited_text_color: 0x62FCFC
+    text_color: 0xEAFFFE

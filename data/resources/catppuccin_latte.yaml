@@ -1,0 +1,16 @@
+# https://github.com/catppuccin/squirrel/blob/main/theme/squirrel.custom.yaml
+patch:
+  "preset_color_schemes/catppuccin_latte":
+    name: Catppuccin Latte
+
+    back_color: 0xE8E0DC                            # 候选条背景色 Crust
+    border_color: 0xEFE9E6                          # 边框色 Mantle
+    text_color: 0x775F5C                            # 拼音行文字颜色 Subtext1
+    label_color: 0x856F6C                           # 预选栏编号颜色 Subtext0
+    candidate_text_color: 0x694F4C                  # 预选项文字颜色 Text
+    hilited_back_color: 0xEF3988                    # 第一候选项背景背景色 Mauve
+    hilited_candidate_text_color: 0xF5F1EF          # 第一候选项文字颜色 Base
+    hilited_candidate_label_color: 0xDAD0CC         # 第一候选项编号颜色 Surface0
+    hilited_text_color: 0xBEB0AC                    # 高亮拼音 (需要开启内嵌编码) Surface2
+    hilited_comment_text_color: 0xDAD0CC            # 注解文字高亮 Surface0
+    comment_text_color: 0xBEB0AC                    # 拼音等提示文字颜色 Surface2

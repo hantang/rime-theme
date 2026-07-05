@@ -1,0 +1,15 @@
+# https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/squirrel.custom.yaml
+patch:
+  "preset_color_schemes/sakura":
+    name: "櫻／Sakura"
+    author: "雪齋"
+
+    text_color: 0xFFFFFF
+    candidate_text_color: 0x9D4F89
+    back_color: 0xDDA783E3
+    comment_text_color: 0xFADEFF
+    hilited_text_color: 0x4235A8
+    hilited_candidate_text_color: 0xFFC37C
+    hilited_candidate_back_color: 0xAA7D2F89
+    hilited_candidate_label_color: 0xFAD5E2
+    label_color: 0x7A5F9D

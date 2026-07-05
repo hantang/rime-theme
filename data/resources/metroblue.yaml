@@ -1,0 +1,18 @@
+# https://github.com/rime/weasel/blob/master/output/data/weasel.yaml
+patch:
+  "preset_color_schemes/metroblue":
+    name: "现代蓝／Metro Blue"
+    author: "Prcuvu <prcuvu@gmail.com>"
+
+    text_color: 0x000000
+    back_color: 0xFFFFFF
+    border_color: 0xD77800
+    label_color: 0x838383
+    hilited_text_color: 0x000000
+    hilited_back_color: 0xFFFFFF
+    candidate_text_color: 0x000000
+    comment_text_color: 0x000000
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_comment_text_color: 0xFFFFFF
+    hilited_candidate_back_color: 0xD77800
+    hilited_label_color: 0xFFFFFF

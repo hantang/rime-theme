@@ -1,0 +1,14 @@
+# https://github.com/rime/squirrel/blob/master/data/squirrel.yaml
+patch:
+  "preset_color_schemes/purity_of_essence":
+    name: 純粹的本質／Purity of Essence
+    author: 佛振
+
+    text_color: 0x2C2CCC
+    back_color: 0xFAFAFA
+    candidate_text_color: 0x000000
+    hilited_text_color: 0x000000
+    hilited_back_color: 0xFAFAFA
+    hilited_candidate_text_color: 0xEEEEEE
+    hilited_candidate_back_color: 0x444444
+    comment_text_color: 0x808080

@@ -1,0 +1,17 @@
+# https://github.com/rime/squirrel/blob/master/data/squirrel.yaml
+# https://github.com/rime/weasel/blob/master/output/data/weasel.yaml
+patch:
+  "preset_color_schemes/ink":
+    name: 墨池／Ink
+    author: 佛振 <chen.sst@gmail.com>
+
+    text_color: 0x5A5A5A
+    back_color: 0xEEFFFFFF
+    border_color: 0x000000
+    candidate_text_color: 0x000000
+    hilited_text_color: 0x000000
+    # hilited_back_color: 0xDDDDDD
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_candidate_back_color: 0xCC000000
+    comment_text_color: 0x5A5A5A
+    hilited_comment_text_color: 0x808080

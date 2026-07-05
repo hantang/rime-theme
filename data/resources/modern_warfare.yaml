@@ -1,0 +1,15 @@
+# https://github.com/rime/weasel/blob/master/output/data/weasel.yaml
+patch:
+  "preset_color_schemes/modern_warfare":
+    name: "現代戰爭／Modern Warfare"
+    author: P1461
+
+    text_color: 0x14BC70
+    back_color: 0x0A1B0D
+    border_color: 0x4BAD83
+    hilited_text_color: 0xFBFDFC
+    hilited_back_color: 0x030E06
+    candidate_text_color: 0xABFEDC
+    comment_text_color: 0xFCFDFB
+    hilited_candidate_text_color: 0xABFEDC
+    hilited_candidate_back_color: 0x676F63

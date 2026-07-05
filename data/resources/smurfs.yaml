@@ -1,0 +1,17 @@
+# https://github.com/rime/weasel/blob/master/output/data/weasel.yaml
+patch:
+  "preset_color_schemes/smurfs":
+    name: "藍精靈／Smurfs"
+    author: "skoj <skoj@qq.com>"
+
+    text_color: 0xFFFFFF
+    back_color: 0xBF7817
+    border_color: 0xF5EDE0
+    label_color: 0xBF7817
+    hilited_text_color: 0xDBBC6D
+    hilited_back_color: 0xBF7817
+    candidate_text_color: 0xF6F6F6
+    comment_text_color: 0xF6F6F6
+    hilited_candidate_text_color: 0xF6F6F6
+    hilited_comment_text_color: 0xF6F6F6
+    hilited_candidate_back_color: 0xDBBC6D

@@ -1,0 +1,27 @@
+# https://github.com/OscarXWei/Squirrel-Skin-Collection/blob/main/squirrel.custom.yaml
+# https://simgv.com/2022/01/11/rime-skin/
+patch:
+  "preset_color_schemes/98WB-1":
+    name: "98五笔"
+    author: 98WB-1
+
+    text_color: 0x92F6DA
+    back_color: 0x222222
+    candidate_text_color: 0xD8E3E6
+    hilited_text_color: 0xFFCF9A
+    hilited_back_color: 0x222222
+    hilited_candidate_text_color: 0x92F6DA
+    hilited_candidate_back_color: 0x10000000    # 0x333333
+    comment_text_color: 0x606CFF
+
+    #candidate_format: "%c\u2005\u2005%@"    # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间。
+    # font_face: "98WB-1"                 # 候选词字体
+    # border_color_width: 0
+    # border_height: 8                        # 窗口边界高度，大于圆角半径才生效
+    # border_width: 8                         # 窗口边界宽度，大于圆角半径才生效
+    # corner_radius: 0                        # 候选条圆角
+    # font_point: 18                          # 候选字词大小
+    # hilited_corner_radius: 3                # 高亮圆角
+    # horizontal: true                        # 水平排列
+    # inline_preedit: true                    # 单行显示，false双行显示
+    # label_font_point: 14                    # 候选编号大小

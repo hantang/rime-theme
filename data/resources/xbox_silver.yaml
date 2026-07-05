@@ -1,0 +1,17 @@
+# https://github.com/rime/weasel/blob/master/output/data/weasel.yaml
+patch:
+  "preset_color_schemes/xbox_silver":
+    name: "銀色叉盒／Xbox Silver"
+    author: "Patricivs <ipatrickmac@me.com>"
+
+    text_color: 0x1FC28D
+    back_color: 0xEFEEEE
+    border_color: 0xEFEEEE
+    label_color: 0x5BF0B5
+    hilited_text_color: 0xFFFFFF
+    hilited_back_color: 0x5BF0B5
+    candidate_text_color: 0x1FC28D
+    comment_text_color: 0x1FC28D
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_comment_text_color: 0xFFFFFF
+    hilited_candidate_back_color: 0x448C28

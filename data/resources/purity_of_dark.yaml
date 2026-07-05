@@ -1,0 +1,40 @@
+# https://gist.github.com/ThinkCats/59b4d1f33bd0e06b177007a13054fcb2
+# 对 purity_of_form 略微调整颜色，让色彩更柔和点，补全其他选项和注释
+patch:
+  "preset_color_schemes/purity_of_dark":
+    name: "純粹的形式／Purity of Form Custom"
+    author: 雨過之後、佛振
+
+    color_space: srgb                       # 色彩空间： srgb | display_p3
+    back_color: 0x261918                         # 候选条背景色
+    border_color: 0x30201E                       # 边框色
+    text_color: 0xE0C0B8                         # 拼音行文字颜色
+    label_color: 0xCBADA5                        # 预选栏编号颜色
+    candidate_text_color: 0xF5D3CA               # 预选项文字颜色
+    hilited_back_color: 0xF4AD8A                 # 第一候选项背景背景色
+    hilited_candidate_text_color: 0x3A2724       # 第一候选项文字颜色
+    hilited_candidate_label_color: 0x4F3A36      # 第一候选项编号颜色
+    hilited_text_color: 0xB79A93                 # 高亮拼音 (需要开启内嵌编码)
+    hilited_comment_text_color: 0x4F3A36         # 注解文字高亮
+    comment_text_color: 0xB79A93                 # 拼音等提示文字颜色
+
+    #font_face: ""                   # 字体及大小
+    #font_point: 17
+    #label_font_face: "Helvetica"    # 序号字体及大小
+    #label_font_point: 12
+    #comment_font_face: "Helvetica"  # 注字体及大小
+    #comment_font_point: 17
+    # candidate_list_layout: linear  # 候选排布：层叠 stacked | 行 linear
+    # text_orientation: horizontal    # 行文向： 横 horizontal | 纵 vertical
+    # inline_preedit: true            # 拼音位于： 候选框 false | 行内 true
+    # translucency: false             # 磨砂： false | true
+    # mutual_exclusive: false         # 色不叠加： false | true
+    # border_height: 0               # 外边框 高
+    # corner_radius: 5              # 外边框 圆角半径
+    # hilited_corner_radius: 0       # 选中框 圆角半径
+    # surrounding_extra_expansion: 0 # 候选项背景相对大小？
+    # shadow_size: 0                 # 阴影大小
+    # line_spacing: 5                # 行间距
+    # base_offset: 0                 # 字基高
+    # alpha: 1                       # 透明度，0~1
+    # spacing: 10                    # 拼音与候选项之间的距离 （inline_preedit: false）

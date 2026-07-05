@@ -1,0 +1,29 @@
+# https://github.com/tsaoshuang/Rime-tiger_code/blob/main/squirrel.yaml
+patch:
+  "preset_color_schemes/hertz-Q":
+    name: "赫兹定制·Q改"
+    author: Bennett S. Owen
+
+    back_color: 0xe3f6fd
+    border_color: 0xc5c8cc
+    candidate_back_color: 0xe3f6fd
+    candidate_text_color: 0x736b55
+    comment_text_color: 0x9377b9
+    hilited_back_color: 0x736b55
+    hilited_candidate_back_color: 0x736b55
+    hilited_candidate_text_color: 0xd5e8ee
+    hilited_comment_text_color: 0xd5e8ee
+    hilited_mark_color: 0xffffff
+    hilited_text_color: 0xd5e8ee
+    label_color: 0x919183
+    text_color: 0x808070
+
+    # key_symbol_color: 0x339977
+    # preview_back_color: 0x6b55d073
+    # preview_text_color: 0xd5e8ee
+    # border_height: 0
+    # border_width: 8
+    # candidate_format: '%c %@ '
+    # corner_radius: 5
+    # hilited_corner_radius: 5
+    # inline_preedit: true

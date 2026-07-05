@@ -1,0 +1,21 @@
+# https://github.com/sccccchallz/FuYu_RIME_color_scheme/blob/main/color_scheme_FuYu.yaml
+# 这套配色使用 hex 编码的 rgba 颜色，即最后两位为透明度
+# 透明度 hex 对应: 100% — FF  ... 50% — 80
+patch:
+  "preset_color_schemes/FuYu": #纯配色，不对整体外观进行更改
+    name: "傅玉Jade/FuYu" #在下傅玉，幸会。致每个有缘看到我的人：祝您 —— 早安、午安、晚安。
+    author: shelz/傅哥    #送给所有粉丝
+    color_format: rgba
+    #blur_window: false  #分支专用参数
+    back_color: 0xf4ede7f2
+    border_color: 0xa99f9dff
+    text_color: 0x696463ff
+    hilited_text_color: 0x5c5a5fff
+    hilited_back_color: 0xbbb0aed9
+    hilited_mark_color: 0xf1d4d1ff
+    hilited_candidate_back_color: 0x2e3686e6
+    hilited_candidate_text_color: 0xfff8f1ff
+    #hilited_candidate_shadow_color: 0x2c3577ff #分支专用参数
+    hilited_candidate_border_color: 0x2c3577e6
+    #shadow_color: 0x5c5855ff #分支专用参数
+    label_color: 0x353131ff

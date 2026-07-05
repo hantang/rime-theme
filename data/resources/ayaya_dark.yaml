@@ -1,0 +1,36 @@
+# https://github.com/LufsX/rime/blob/master/squirrel.yaml
+# https://github.com/LufsX/rime/blob/master/weasel.yaml
+patch:
+  "preset_color_schemes/ayaya_dark":
+    name: "文文／Ayaya／深色"
+    author: "Lufs X <i@isteed.cc>"
+
+    color_space: display_p3
+    candidate_format: "[label]\u2005[candidate] [comment]"
+    text_color: 0x8100EB
+    back_color: 0x000000
+    border_color: 0xECE4FC      # 0x000000
+    candidate_text_color: 0xD2D2D2
+    comment_text_color: 0x8E8E8E
+    label_color: 0x888785
+    hilited_candidate_back_color: 0x2C1E3C
+    hilited_candidate_text_color: 0x7036E2
+    hilited_comment_text_color: 0x8E8E8E
+    hilited_candidate_label_color: 0x7036E2
+    hilited_text_color: 0xD8000000
+    hilited_label_color: 0xA483EC
+    hilited_mark_color: 0x7A40EC
+
+    # alpha: 0.95
+    # border_height: 0
+    # border_width: 0
+    # candidate_list_layout: linear
+    # corner_radius: 5
+    # font_face: "LXGWWenKai-Regular, PingFangSC"
+    # font_point: 16.5
+    # hilited_corner_radius: 0
+    # inline_preedit: true
+    # label_font_face: "LXGWWenKai-Regular, PingFangSC"
+    # label_font_point: 12
+    # shadow_size: 0
+    # text_orientation: horizontal

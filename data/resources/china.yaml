@@ -1,0 +1,37 @@
+# https://github.com/OscarXWei/Squirrel-Skin-Collection/blob/main/squirrel.custom.yaml
+# https://simgv.com/2022/01/11/rime-skin/
+patch:
+  "preset_color_schemes/China":
+    name: "中国/China"
+
+    back_color: 0x0026FF
+    border_color: 0xFFFFFF
+    candidate_text_color: 0x222222
+    comment_text_color: 0x00FDFF
+    label_color: 0x00FBFF
+    hilited_candidate_back_color: 0x0026FF
+    hilited_candidate_text_color: 0x00FBFF
+    hilited_comment_text_color: 0xFFFFFF
+    hilited_candidate_label_color: 0x00FBFF
+    preedit_back_color: 0x364572
+    text_color: 0x3FFFFFFF
+    hilited_back_color: 0xEFEFF4
+    hilited_text_color: 0xFFFFFF
+
+    # font_face: "STKaitiSC-Bold"
+    # # font_face: "GEETYPE-XingKaiGBT-Flash"
+    # font_point: 20
+    # label_font_face: "STKaitiSC-Bold"
+    # label_font_point: 14
+    # comment_font_face: "Kaiti SC"
+    # comment_font_point: 16
+    # candidate_list_layout: linear
+    # text_orientation: horizontal
+    # inline_preedit: true
+    # translucency: false
+    # corner_radius: 4
+    # hilited_corner_radius: 5
+    # border_height: 5
+    # line_spacing: 5
+    # spacing: 5
+    # color_space: srgb

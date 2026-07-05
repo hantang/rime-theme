@@ -1,0 +1,16 @@
+# https://sspai.com/post/84373
+# https://tieba.baidu.com/p/5849361297?pn=2
+patch:
+  "preset_color_schemes/Micosoft": # 此行之下为配色设置
+    name: "Micosoft" # 配色名称
+    author: "XNOM" # 作者名称
+
+    back_color: 0xFFFFFF                        # 候选框 背景色
+    border_color: 0xD77800                      # 候选框 边框颜色
+    text_color: 0x000000                        # 已选择字 文字颜色
+    hilited_text_color: 0x000000                # 内选区编码色
+    hilited_back_color: 0xFFFFFF                # 内选区背景色
+    hilited_candidate_text_color: 0xFFFFFF      # 激活候选项文字色
+    hilited_candidate_back_color: 0xD77800      # 激活候选项背景色
+    candidate_text_color: 0x000000              # 其他候选项文字颜色
+    comment_text_color: 0x000000                # 其他候选项提示色

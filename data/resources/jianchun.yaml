@@ -1,0 +1,18 @@
+# https://github.com/amzxyz/rime_wanxiang/blob/wanxiang/weasel.yaml
+patch:
+  "preset_color_schemes/jianchun":
+    name: 简纯
+    author: amzxyz
+
+    back_color: 0xF2F2F2
+    border_color: 0xCE7539
+    text_color: 0x3C647E
+    hilited_text_color: 0x3C647E
+    hilited_back_color: 0x797954
+    hilited_comment_text_color: 0xFFFFFF
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_candidate_back_color: 0xCE7539
+    hilited_label_color: 0xDEDEDE
+    candidate_text_color: 0x000000
+    comment_text_color: 0x000000
+    label_color: 0x91897E

@@ -1,0 +1,19 @@
+# https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/squirrel.custom.yaml
+patch:
+  "preset_color_schemes/westland":
+    name: "西域／Westland"
+    author: "雪齋"
+
+    candidate_text_color: 0x296A84
+    back_color: 0xEE92E5F1
+    comment_text_color: 0x718BA2
+    hilited_text_color: 0x4235A8
+    hilited_candidate_text_color: 0x1BD5DC
+    hilited_back_color: 0x11000000
+    hilited_candidate_back_color: 0xDD2A4485
+    hilited_comment_text_color: 0xFFFFFF
+    hilited_candidate_label_color: 0x11134C
+    label_color: 0x62B39D
+
+    # label_font_point: 12
+    # font_point": 15

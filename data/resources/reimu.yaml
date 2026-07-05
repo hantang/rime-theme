@@ -1,0 +1,32 @@
+# https://github.com/LufsX/rime/blob/master/squirrel.yaml
+patch:
+  "preset_color_schemes/reimu":
+    name: "灵梦／Reimu"
+    author: "Lufs X <i@isteed.cc>"
+
+    back_color: 0xF5FCFD
+    candidate_text_color: 0x282C32
+    comment_text_color: 0x717172
+    label_color: 0x888785
+    hilited_candidate_back_color: 0xF5FCFD
+    hilited_candidate_text_color: 0x4F00E5
+    hilited_comment_text_color: 0x9F9CF2
+    hilited_candidate_label_color: 0x4F00E5
+    text_color: 0x6B54E9
+    hilited_text_color: 0xD8000000
+
+    # font_face: "LXGWWenKai-Regular, PingFangSC"
+    # font_point: 17
+    # label_font_face: "LXGWWenKai-Regular, PingFangSC"
+    # label_font_point: 14
+    # candidate_format: "[label]\u2005[candidate] [comment]"
+    # candidate_list_layout: linear
+    # text_orientation: horizontal
+    # inline_preedit: true
+    # corner_radius: 7
+    # hilited_corner_radius: 6
+    # border_height: 1
+    # border_width: 1
+    # alpha: 0.95
+    # shadow_size: 2
+    # color_space: display_p3

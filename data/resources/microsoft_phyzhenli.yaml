@@ -1,0 +1,14 @@
+# https://github.com/wongdean/rime-settings/issues/22
+patch:
+  "preset_color_schemes/Microsoft":
+    name: "Microsoft"
+    author: "phyzhenli"
+
+    back_color: 0xF4F4F4                        # 背景色
+    border_color: 0xDCDCDC                      # 边框色
+    hilited_candidate_text_color: 0x000000      # 已选字颜色 纯黑
+    hilited_candidate_back_color: 0xFFD8A6      # 已选字背景色
+    candidate_text_color: 0x000000              # 候选字颜色 纯黑
+    label_color: 0x656565                       # 候选字的数字颜色
+    hilited_label_color: 0x665645               # 已选字的数字的颜色
+    comment_text_color: 0x000000                # 所有[全角]、[半角]等提示文字颜色

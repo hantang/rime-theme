@@ -1,0 +1,33 @@
+# https://github.com/amzxyz/rime_wanxiang/blob/wanxiang/weasel.yaml
+patch:
+  "preset_color_schemes/amber-7":
+    name: 淡白/weasel
+    author: 五笔小筑 <wubixiaozhu@126.com>
+
+    # 背景设置
+    back_color: 0xFFFFFF                                    # 窗口背景
+    border_color: 0xE99321                                  # 窗口边框
+    shadow_color: 0x00000000                                # 窗口阴影
+    # 内选区域
+    text_color: 0xE99321                                    # 文字
+    hilited_text_color: 0x2238DC                            # 编码
+    hilited_back_color: 0xFFFFFF                            # 背景
+    hilited_shadow_color: 0x00000000                        # 阴影
+    # 以下两项在 inline_preedit: false 时生效
+    nextpage_color: 0x0000FF                                # 翻页箭头颜色：下一页；不设置则不显示箭头
+    prevpage_color: 0x0000FF                                # 翻页箭头颜色：上一页；不设置则不显示箭头
+    # 激活候选项
+    hilited_mark_color: 0x00000000                          # 激活标签
+    hilited_label_color: 0x2021FF                           # 序号文字
+    hilited_candidate_text_color: 0x2021FF                  # 候选文字
+    hilited_comment_text_color: 0x000000                    # 提示文字
+    hilited_candidate_back_color: 0xECF1FC                  # 激活背景
+    hilited_candidate_border_color: 0xCFDCFD                # 激活边框
+    hilited_candidate_shadow_color: 0x00000000              # 激活阴影
+    # 其它候选项
+    label_color: 0xE99321                                   # 序号文字
+    candidate_text_color: 0xE99321                          # 候选文字
+    comment_text_color: 0x000000                            # 提示文字
+    candidate_back_color: 0xFFFFFF                          # 候选背景
+    candidate_border_color: 0xFFFFFF                        # 候选边框
+    candidate_shadow_color: 0x00000000                      # 候选阴影

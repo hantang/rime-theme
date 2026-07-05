@@ -1,0 +1,12 @@
+# https://github.com/dearxs/Rime-Themes/blob/master/squirrel.custom.yaml
+patch:
+  "preset_color_schemes/github":
+    name: Github
+    author: Khan
+
+    back_color: 0x221B16
+    hilited_candidate_text_color: 0x000000
+    hilited_candidate_back_color: 0x7CCF72
+    candidate_text_color: 0xFFD6A5
+    label_color: 0xFFD6A5
+    comment_text_color: 0xFFD6A5

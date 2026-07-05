@@ -1,0 +1,41 @@
+# https://github.com/nobodysclown/rime-wechat-keyboard/blob/main/weasel.custom.yaml
+# https://gist.github.com/zsakvo/fff6e4859265d5d629439d5ccb553f8a
+# https://www.v2ex.com/t/1094471
+patch:
+  "preset_color_schemes/wechat-keyboard":
+    name: "wechat-keyboard"
+    author: zsakvo
+
+    text_color: 0x424242
+    back_color: 0xFFFFFF
+    border_color: 0xDDDDDD
+    label_color: 0x828282
+    candidate_text_color: 0x525252
+    hilited_comment_text_color: 0x999999
+    hilited_label_color: 0xFFFFFF
+    hilited_text_color: 0x424242
+    comment_text_color: 0x999999
+    hilited_candidate_back_color: 0x75B100
+    hilited_candidate_text_color: 0xFFFFFF
+
+    # back_color: 0xC85D5D5D #设置输入条的背景色，色值是按照 BGR 的形式 16 进制填写
+    # border_color: 0x151515 #输入条边框颜色，似乎在横向模式下不起作用
+    # border_color_width: 0 #输入条边框宽度
+    # candidate_text_color: 0xFFFFFF #候选字颜色
+    # text_color: 0xFFFFFF #普通候选字的颜色，非第一候选字
+    # hilited_candidate_label_color: 0x151515 #第一候选字标签颜色，也就是数字 1
+    # hilited_text_color: 0x151515 #第一候选字颜色
+    # hilited_candidate_back_color: 0x75B100 #第一候选字高亮颜色（背景色）
+    # # label_color: 0x888888 #普通标签的颜色(非第一候选字)，也就是候选字数字
+    # hilited_candidate_shadow_color: 0xDDDDDD # 阴影
+
+    # border_height: 0
+    # border_width: 8
+    # candidate_format: '%c %@ '
+    # corner_radius: 5
+    # hilited_corner_radius: 5
+    # font_face: PingFangSC
+    # font_point: 16
+    # horizontal: true
+    # inline_preedit: true
+    # label_font_point: 12

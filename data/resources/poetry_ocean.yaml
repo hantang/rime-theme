@@ -1,0 +1,16 @@
+# https://github.com/myshiqiqi/rime-wubi/blob/master/weasel.yaml
+patch:
+  "preset_color_schemes/poetry_ocean":
+    name: 诗意之海／Poetry Ocean
+    author: 空山明月 <mrshiqiqi@126.com>
+
+    text_color: 0x333333                                    # 文本色
+    back_color: 0xFEE6D3                                    # 背景色
+    label_color: 0x333333                                   # 标签色
+    hilited_text_color: 0x333333                            # 编码文本色
+    candidate_text_color: 0x333333                          # 非高亮候选文本色
+    comment_text_color: 0x333333                            # 非高亮注解文本色
+    hilited_candidate_label_color: 0xFFFFFF                 # 高亮标签色
+    hilited_candidate_text_color: 0xFFFFFF                  # 高亮候选文本色
+    hilited_candidate_back_color: 0xB5513F                  # 高亮候选背景色
+    hilited_comment_text_color: 0xFFFFFF                    # 高亮注解文本色

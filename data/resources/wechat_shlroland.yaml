@@ -1,0 +1,23 @@
+# https://gist.github.com/shlroland/78b3af88b993116c6f3e14b30cfefac0
+patch:
+  "preset_color_schemes/wechat_dark":
+      name: '微信键盘_深色 / WeChat-keyboard_dark' # 配色取自微信键盘
+      author: shlroland
+      back_color: 0x151515
+      border_color: 0x151515
+      comment_text_color: 0xAEAEAE
+      hilited_candidate_back_color: 0x75B100
+      hilited_candidate_text_color: 0xFFFFFF
+      label_color: 0x777777
+      text_color: 0xBBBBBB
+
+      # border_height: 0
+      # border_width: 8
+      # candidate_format: '%c %@ '
+      # corner_radius: 5
+      # hilited_corner_radius: 5
+      # font_face: PingFangSC
+      # font_point: 16
+      # horizontal: true
+      # inline_preedit: true
+      # label_font_point: 12

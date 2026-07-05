@@ -1,0 +1,24 @@
+# https://github.com/rime/squirrel/blob/master/data/squirrel.yaml
+patch:
+  "preset_color_schemes/clean_white":
+    name: 简约白／Clean White
+    author: Chongyu Zhu <lembacon@gmail.com>, based on 搜狗「简约白」
+
+    label_color: 0x888888
+    text_color: 0x808080
+    hilited_text_color: 0x000000
+    candidate_text_color: 0x000000
+    comment_text_color: 0x808080
+    back_color: 0xEEEEEE
+    hilited_candidate_label_color: 0xA0C98915
+    hilited_candidate_text_color: 0xC98915
+    hilited_candidate_back_color: 0xEEEEEE
+
+    # horizontal: true
+    # candidate_list_layout: linear
+    # candidate_format: "%c %@"
+    # corner_radius: 6
+    # border_height: 6
+    # border_width: 6
+    # font_point: 16
+    # label_font_point: 12

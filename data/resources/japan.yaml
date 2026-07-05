@@ -1,0 +1,37 @@
+# https://github.com/OscarXWei/Squirrel-Skin-Collection/blob/main/squirrel.custom.yaml
+# https://simgv.com/2022/01/11/rime-skin/
+patch:
+  "preset_color_schemes/Japan":
+    name: "日本/Japan"
+
+    back_color: 0xFFFFFF
+    border_color: 0x000000
+    candidate_text_color: 0x222222
+    comment_text_color: 0x00F900
+    label_color: 0x0026FF
+    hilited_candidate_back_color: 0x0026FF
+    hilited_candidate_text_color: 0x00FBFF
+    hilited_comment_text_color: 0x00FBFF
+    hilited_candidate_label_color: 0xFF4D01
+    preedit_back_color: 0xFFFFFF
+    text_color: 0x00FBFF
+    hilited_back_color: 0xFFFFFF
+    hilited_text_color: 0x000000
+
+    # base_offset: -7
+    # border_height: 5
+    # candidate_list_layout: linear
+    # color_space: srgb
+    # comment_font_face: "HiraMaruProN-W4"
+    # comment_font_point: 16
+    # corner_radius: 4
+    # font_face: "Pingfang SC"
+    # font_point: 16
+    # hilited_corner_radius: 12
+    # inline_preedit: true
+    # label_font_face: "klee"
+    # label_font_point: 14
+    # line_spacing: 5
+    # spacing: 5
+    # text_orientation: horizontal
+    # translucency: false

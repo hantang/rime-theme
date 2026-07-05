@@ -1,0 +1,15 @@
+# https://github.com/rime/squirrel/blob/master/data/squirrel.yaml
+# https://gist.github.com/laubonghaudoi/40f4ad4036a321a21fb2f32229892f55
+patch:
+  "preset_color_schemes/purity_of_form":
+    name: 純粹的形式／Purity of Form
+    author: 雨過之後、佛振
+
+    text_color: 0xC2C222    # 0xC2C2C2
+    back_color: 0x444444
+    candidate_text_color: 0xEEEEEE
+    hilited_text_color: 0xEEEEEE
+    hilited_back_color: 0x444444
+    hilited_candidate_text_color: 0x000000
+    hilited_candidate_back_color: 0xFAFAFA
+    comment_text_color: 0x808080

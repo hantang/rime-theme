@@ -1,0 +1,14 @@
+# https://github.com/LufsX/rime/blob/master/weasel.yaml
+patch:
+  "preset_color_schemes/win10_MDL_ayaya":
+    name: "Windows10 文文／Ayaya"
+    author: "Lufs X <i@isteed.cc>"
+
+    back_color: 0xFFFFFF
+    candidate_text_color: 0x121212
+    comment_text_color: 0x8E8E8E
+    hilited_candidate_back_color: 0xECE4FC
+    hilited_label_color: 0xB18FF4
+    hilited_candidate_text_color: 0x7A40EC
+    label_color: 0x888785
+    text_color: 0x8100EB

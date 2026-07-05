@@ -1,0 +1,31 @@
+# https://github.com/shaochenshi/rime_skin
+patch:
+  "preset_color_schemes/flat_light_shaochenshi":
+    name: "扁平明／Flat Light"
+
+    back_color: 0x1AFFFFFF
+    candidate_text_color: 0xB3000000
+    comment_text_color: 0x80333333
+    label_color: 0xBB333333
+    hilited_candidate_back_color: 0x4DFFFFFF
+    hilited_candidate_text_color: 0x000000
+    hilited_comment_text_color: 0xBF333333
+    hilited_candidate_label_color: 0x000000
+    preedit_back_color: 0x1A000000
+    text_color: 0xBF323232
+    hilited_text_color: 0xBF1A1A1A
+
+    # font_point: 18.0
+    # candidate_list_layout: linear
+    # text_orientation: horizontal
+    # inline_preedit: false
+    # translucency: true
+    # mutual_exclusive: true
+    # corner_radius: 15.0
+    # hilited_corner_radius: 13.0
+    # border_height: -5.0
+    # border_width: -5.0
+    # line_spacing: 4.0
+    # alpha: 100
+    # shadow_size: 1.0
+    # color_space: display_p3

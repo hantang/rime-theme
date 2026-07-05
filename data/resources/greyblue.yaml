@@ -1,0 +1,24 @@
+# https://gist.github.com/laubonghaudoi/40f4ad4036a321a21fb2f32229892f55
+patch:
+  "preset_color_schemes/greyblue":
+    name: "Grey Blue"
+
+    back_color: 0xF6D7B5                        # 候选条背景色
+    border_color: 0xE0B693                      # 边框色
+    text_color: 0xF7F7F7                        # HEX颜色代码，但是要注意顺序是蓝绿红（倒序）0xBBGGRR
+    candidate_text_color: 0x000000              # 非第一候选项
+    hilited_candidate_back_color: 0xD98840      # 第一候选项背景
+    hilited_candidate_text_color: 0xFFFFFF      # 第一候选项
+
+    # horizontal: false # 候选条横向显示
+    # inline_preedit: true # 启用内嵌编码模式，候选条首行不显示拼音
+    # candidate_format: "%c.\u2005%@\u2005" # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间。
+    # corner_radius: 6 # 候选条圆角半径
+    # border_height: 0 # 窗口边界高度，大于圆角半径才生效
+    # border_width: 10 # 窗口边界宽度，大于圆角半径才生效
+    # line_spacing: 5 # 候选词的行间距
+    # # spacing: 3                                  # 在非内嵌编码模式下，预编辑和候选词之间的间距
+    # font_face: "PingFangHK-Thin" # 候选词字体
+    # font_point: 18 # 预选栏文字字号
+    # label_font_face: "MyriadPro-LightSemiCn" # 候选词编号字体
+    # label_font_point: 20 # 预选栏编号字号

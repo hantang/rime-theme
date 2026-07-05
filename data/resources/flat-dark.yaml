@@ -1,0 +1,21 @@
+# https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/squirrel.custom.yaml
+patch:
+  "preset_color_schemes/flat-dark":
+    name: 扁平闇／Flat Dark
+    author: 雪齋
+
+    back_color: 0x1A000000
+    candidate_text_color: 0xB3FFFFFF
+    comment_text_color: 0x80CCCCCC
+    label_color: 0xBBCCCCCC
+    hilited_candidate_back_color: 0x4D000000
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_comment_text_color: 0xBFCCCCCC
+    hilited_candidate_label_color: 0xFFFFFF
+    preedit_back_color: 0x1AFFFFFF
+    text_color: 0xBFE5E5E5
+    hilited_back_color: 0x0D000000
+    hilited_text_color: 0xBFFFFFFF
+
+    # color_space: display_p3
+    # translucency: true

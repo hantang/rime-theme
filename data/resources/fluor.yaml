@@ -1,0 +1,13 @@
+# https://tieba.baidu.com/p/5849361297
+patch:
+  "preset_color_schemes/fluor":
+    name: 荧光／Fluor
+    author: Fluor, based on lost_temple
+
+    text_color: 0xE8F3F6
+    back_color: 0xEE303030
+    hilited_text_color: 0x82E6CA
+    hilited_candidate_text_color: 0x82E6CA
+    hilited_candidate_back_color: 0x303030
+    comment_text_color: 0xBB82E6CA
+    hilited_comment_text_color: 0xBB82E6CA

@@ -1,0 +1,21 @@
+# https://github.com/tsaoshuang/Rime-tiger_code/blob/main/squirrel.yaml
+patch:
+  "preset_color_schemes/rose_red":
+    name: "玫红"
+    author: "木易"
+
+    back_color: 0xF4F4F6
+    border_color: 0xffffff
+    candidate_text_color: 0x383838
+    comment_text_color: 0x87807B
+    hilited_back_color: 0xEFEFF4
+    hilited_candidate_back_color: 0xEDEDF9
+    hilited_candidate_label_color: 0x884F11FA
+    hilited_candidate_text_color: 0x4F11FA
+    hilited_comment_text_color: 0xF19C38
+    hilited_text_color: 0x8E8E93
+    label_color: 0xaaaaaa
+    preedit_back_color: 0x364572
+
+    # corner_radius: 5
+    # hilited_corner_radius: 5

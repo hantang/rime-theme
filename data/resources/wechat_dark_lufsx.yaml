@@ -1,0 +1,32 @@
+# https://github.com/LufsX/rime/blob/master/squirrel.yaml
+patch:
+  "preset_color_schemes/wechat_dark":
+    name: "高仿暗色微信输入法"
+    author: "Lufs X <i@isteed.cc>"
+
+    back_color: 0x151515
+    border_color: 0x151515
+    candidate_text_color: 0xB9B9B9
+    comment_text_color: 0x8E8E8E
+    label_color: 0x888785
+    hilited_candidate_back_color: 0x74A54B
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_comment_text_color: 0xF0F0F0
+    hilited_candidate_label_color: 0xFFFFFF
+    text_color: 0xFFFFFF
+    hilited_text_color: 0x777777
+
+    # font_face: "PingFangSC-Regular"
+    # font_point: 15
+    # label_font_face: "PingFangSC-Regular"
+    # label_font_point: 12
+    # comment_font_face: "PingFangSC-Regular"
+    # comment_font_point: 12
+    # candidate_format: "[label]\u2005[candidate] [comment]"
+    # candidate_list_layout: linear
+    # text_orientation: horizontal
+    # inline_preedit: true
+    # corner_radius: 7
+    # hilited_corner_radius: 7
+    # border_height: -2
+    # color_space: display_p3

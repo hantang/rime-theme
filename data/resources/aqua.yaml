@@ -1,0 +1,20 @@
+# https://github.com/rime/squirrel/blob/master/data/squirrel.yaml
+# https://github.com/rime/weasel/blob/master/output/data/weasel.yaml
+patch:
+  "preset_color_schemes/aqua":
+    name: 碧水／Aqua
+    author: 佛振 <chen.sst@gmail.com>
+
+    text_color: 0x000000                                # 默认文字颜色
+    back_color: 0xECEEEE                                # 候选窗背景色
+    shadow_color: 0x00000000                            # 候选窗阴影色，默认全透明（无阴影）
+    border_color: 0xE0E0E0                              # 候选窗边框颜色
+    hilited_text_color: 0x000000                        # 编码文字颜色
+    hilited_back_color: 0xD4D4D4                        # 编码背景颜色
+    hilited_shadow_color: 0x00000000                    # 编码背景块阴影颜色
+    hilited_candidate_text_color: 0xFFFFFF              # 高亮候选文字颜色
+    hilited_candidate_back_color: 0xFA3A0A              # 高亮候选背景颜色
+    hilited_candidate_shadow_color: 0x00000000          # 高亮候选背景块阴影颜色
+    candidate_text_color: 0x000000                      # 非高亮候选文字颜色
+    candidate_back_color: 0xECEEEE                      # 非高亮候选背景颜色
+    candidate_shadow_color: 0x00000000                  # 非高亮候选背景块阴影颜色

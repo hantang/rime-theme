@@ -1,0 +1,14 @@
+# https://github.com/rime/weasel/blob/master/output/data/weasel.yaml
+patch:
+  "preset_color_schemes/brisk":
+    name: "輕盈／Brisk"
+    author: "skoj <skoj@qq.com>"
+
+    text_color: 0x2238DC
+    back_color: 0xFFFFFF
+    border_color: 0x333333
+    hilited_text_color: 0x2238DC
+    hilited_back_color: 0xFFFFFF
+    candidate_text_color: 0x575757
+    hilited_candidate_text_color: 0x2238DC
+    hilited_candidate_back_color: 0xFFFFFF

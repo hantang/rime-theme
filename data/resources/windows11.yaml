@@ -1,0 +1,17 @@
+# https://github.com/Rjlintkh/rime-theme-windows11/blob/master/windows11_theme.yaml
+patch:
+  "preset_color_schemes/windows11":
+    name: "Windows 11"
+
+    candidate_text_color: 0x000000
+    comment_text_color: 0x888888
+    text_color: 0x000000
+    back_color: 0xFFFFFF
+    border_color: 0xCCCCCC
+    hilited_back_color: 0xFFFFFF
+    hilited_candidate_back_color: 0xEFC999
+    hilited_candidate_text_color: 0x000000
+    hilited_comment_text_color: 0x888888
+    hilited_label_color: 0x000000
+    hilited_text_color: 0x000000
+    label_color: 0x000000

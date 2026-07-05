@@ -1,0 +1,30 @@
+# https://github.com/OscarXWei/Squirrel-Skin-Collection/blob/main/squirrel.custom.yaml
+# https://simgv.com/2022/01/11/rime-skin/
+patch:
+  "preset_color_schemes/mac_pink":
+    name: "Mac洋红"
+
+    back_color: 0xFFFFFF
+    border_color: 0xFFFFFF
+    candidate_text_color: 0x3C3C3C
+    comment_text_color: 0x999999
+    label_color: 0x999999
+    hilited_candidate_back_color: 0xFB3DEA
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_comment_text_color: 0xCCCCCC
+    hilited_candidate_label_color: 0xFFFFFF
+    text_color: 0x424242
+    hilited_back_color: 0x000000
+    hilited_text_color: 0x999999
+
+    # border_height: 4.0
+    # border_width: 4.0
+    # candidate_list_layout: linear
+    # color_space: srgb
+    # corner_radius: 5.0
+    # font_face: "PingFangSC-Regular, AppleColorEmoji, HanaMinA, HanaMinB"
+    # font_point: 16.0
+    # hilited_corner_radius: 4.0
+    # inline_preedit: true
+    # text_orientation: horizontal
+    # translucency: false

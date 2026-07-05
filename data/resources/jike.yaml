@@ -1,0 +1,24 @@
+# https://github.com/OscarXWei/Squirrel-Skin-Collection/blob/main/squirrel.custom.yaml
+# https://simgv.com/2022/01/11/rime-skin/
+# https://github.com/ryekee/rime-color-scheme/blob/master/jike.yaml
+patch:
+  "preset_color_schemes/jike":
+    name: "即刻黄"
+    author: Ryekee
+
+    back_color: 0x11E4FF
+    candidate_text_color: 0x362915
+    comment_text_color: 0x000000
+    hilited_candidate_back_color: 0xF4B95F
+    hilited_candidate_text_color: 0xFFFFFF
+    text_color: 0xFFFFFF
+
+    # border_height: 0
+    # border_width: 0
+    # candidate_format: "%c  %@ "
+    # font_face: "Lucida Grande,PingFangSC-Regular, PingFangSC-Medium,PingFangTC-Medium"
+    # horizontal: true
+    # inline_preedit: true
+    # label_font_point: 14
+    # label_font_face: "Helvetica"
+    # line_spacing: 6

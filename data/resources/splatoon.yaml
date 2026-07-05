@@ -1,0 +1,36 @@
+# https://github.com/OscarXWei/Squirrel-Skin-Collection/blob/main/squirrel.custom.yaml
+# https://simgv.com/2022/01/11/rime-skin/
+patch:
+  "preset_color_schemes/splatoon":
+    name: 喷射战士
+
+    back_color: 0xEB86FF
+    border_color: 0xFF5C61
+    candidate_text_color: 0x222222
+    comment_text_color: 0x00FDFF
+    label_color: 0xAAAAAA
+    hilited_candidate_back_color: 0xC7FF00
+    hilited_candidate_text_color: 0xFF5C61
+    hilited_comment_text_color: 0xFFFFFF
+    hilited_candidate_label_color: 0x884F11FA
+    preedit_back_color: 0x364572
+    text_color: 0x3FFFFFFF
+    hilited_back_color: 0xEFEFF4
+    hilited_text_color: 0xFFFFFF
+
+    # font_face: "PingFangSC-Regular"
+    # font_point: 15.0
+    # label_font_face: "Skia-Regular"
+    # label_font_point: 14.0
+    # comment_font_face: "PingFangSC-Regular"
+    # comment_font_point: 16.0
+    # candidate_list_layout: linear
+    # text_orientation: horizontal
+    # inline_preedit: true
+    # translucency: false
+    # corner_radius: 4.0
+    # hilited_corner_radius: 5.0
+    # border_height: 5.0
+    # line_spacing: 5.0
+    # spacing: 5.0
+    # color_space: srgb

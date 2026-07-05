@@ -1,0 +1,22 @@
+# https://github.com/a940727702/RimeSkins-/blob/main/weasel.custom.yaml
+patch:
+  "preset_color_schemes/ILoveYuYu":
+    name: ILoveYuYu
+    author: Fredy_Y
+
+    back_color: 0xFFFFFF
+    border_color: 0xFFA961
+    candidate_back_color: 0xFFFFFF
+    candidate_shadow_color: 0x00000000
+    candidate_text_color: 0xFFA961
+    comment_text_color: 0x5FC2FF
+    hilited_back_color: 0xFEC18B
+    hilited_candidate_back_color: 0xFEC18B
+    hilited_candidate_shadow_color: 0x00000000
+    hilited_candidate_text_color: 0x3B5ED2
+    hilited_comment_text_color: 0x3B5ED2
+    hilited_shadow_color: 0x00000000
+    hilited_text_color: 0xFFFFFF
+    label_color: 0xFFA961
+    shadow_color: 0x00000000
+    text_color: 0x3B5ED2

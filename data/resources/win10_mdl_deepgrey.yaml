@@ -1,0 +1,17 @@
+# https://github.com/LufsX/rime/blob/master/weasel.yaml
+patch:
+  "preset_color_schemes/win10_MDL_deepgrey":
+    name: "Windows10 Deepgrey"
+    author: fbewivpjsbsby
+
+    text_color: 0x000000
+    candidate_text_color: 0x000000
+    back_color: 0xFFFFFF
+    border_color: 0x7E7969
+    hilited_text_color: 0xFFFFFF
+    hilited_back_color: 0x7E7969
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_candidate_back_color: 0x7E7969
+    hilited_label_color: 0xFFFFFF
+    comment_text_color: 0x888888
+    hilited_comment_text_color: 0xFFFFFF

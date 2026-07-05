@@ -1,0 +1,18 @@
+# https://zhuanlan.zhihu.com/p/687068540
+patch:
+  "preset_color_schemes/succulent_plant":
+    name: simple
+    author: zzh
+
+    back_color: 0xFFFFFF
+    border_color: 0xC8DAD9
+    text_color: 0xFFFFFF
+    hilited_text_color: 0xFFFFFF
+    hilited_back_color: 0xC95D2F
+    hilited_comment_text_color: 0xFFFFFF
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_candidate_back_color: 0xC95D2F
+    hilited_label_color: 0xFFFFFF
+    candidate_text_color: 0x424242
+    comment_text_color: 0x000000
+    label_color: 0x7D7D7D

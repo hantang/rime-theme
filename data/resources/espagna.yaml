@@ -1,0 +1,17 @@
+# https://github.com/rime/weasel/blob/master/output/data/weasel.yaml
+patch:
+  "preset_color_schemes/espagna":
+    name: "埃斯巴尼亞／España"
+    author: "Patricivs <ipatrickmac@me.com>"
+
+    text_color: 0xFFFFFF
+    back_color: 0x230DC3
+    border_color: 0x230DC3
+    label_color: 0xFFFFFF
+    hilited_text_color: 0xFFFFFF
+    hilited_back_color: 0x2CB5F7
+    candidate_text_color: 0xFFFFFF
+    comment_text_color: 0xFFFFFF
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_comment_text_color: 0xFFFFFF
+    hilited_candidate_back_color: 0x2CB5F7

@@ -1,0 +1,23 @@
+# https://github.com/OscarXWei/Squirrel-Skin-Collection/blob/main/squirrel.custom.yaml
+# https://simgv.com/2022/01/11/rime-skin/
+patch:
+  "preset_color_schemes/transparent":
+    name: 无痕
+    author: Oscar Wei
+
+    back_color: 0x0050FF36
+    text_color: 0x00DB29FF
+    hilited_text_color: 0x00D13BFF
+    hilited_back_color: 0x003BAAFF
+    hilited_candidate_text_color: 0x00DB29FF
+    hilited_candidate_back_color: 0x00E7FF4D
+    hilited_candidate_label_color: 0x00FF9A17
+    hilited_comment_text_color: 0x005A5A5A
+    candidate_text_color: 0x00FF6BFF
+    comment_text_color: 0x005A5A5A
+
+    # horizontal: true             # true横排，false竖排
+    # font_face: " "
+    # label_color: ""
+    # font_point: 1                         # 候选字词大小
+    # label_font_point: 1                   # 候选编号大小

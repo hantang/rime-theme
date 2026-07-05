@@ -1,0 +1,14 @@
+# https://1900.live/untitled-5/
+# https://github.com/rime/weasel/issues/1205
+patch:
+  "preset_color_schemes/win11dark":
+    name: "Win11暗色 / Win11Dark"
+
+    text_color: 0xF9F9F9
+    label_color: 0xF9F9F9
+    back_color: 0x2C2C2C
+    hilited_label_color: 0xF9F9F9
+    border_color: 0x002C2C2C
+    hilited_mark_color: 0xFFC24C
+    hilited_candidate_back_color: 0x383838
+    shadow_color: 0x20000000
