@@ -1,0 +1,49 @@
+{
+  "color": [
+    "Beige",
+    "Black",
+    "Blue",
+    "Brown",
+    "Burgundy",
+    "Dark Green",
+    "Gold",
+    "Green",
+    "Grey",
+    "Maroon",
+    "Navy Blue",
+    "Orange",
+    "Peach",
+    "Pink",
+    "Purple",
+    "Red",
+    "Teal",
+    "Turquoise",
+    "White",
+    "Yellow"
+  ],
+  "inspiration": [
+    "Autumn",
+    "Beach",
+    "Christmas",
+    "Desert",
+    "Ocean",
+    "Rainbow",
+    "Spring",
+    "Summer",
+    "Sunset",
+    "Tropical",
+    "Winter"
+  ],
+  "styles": [
+    "Bright",
+    "Complementary",
+    "Cool",
+    "Dark",
+    "Earthy",
+    "Monochromatic",
+    "Neutral",
+    "Pastel",
+    "Retro",
+    "Warm"
+  ]
+}
