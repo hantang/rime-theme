@@ -1,4 +1,5 @@
 import { parse as parseYamlScalar } from "yaml";
+import { withBasePath } from "./base-path";
 import {
   colorFieldMeta,
   rimeColorFields,
@@ -47,7 +48,7 @@ const fallbackColors: RimeThemeColors = {
 // data/resources/*.yaml once, ahead of time) — a single fetch instead of one
 // request + client-side parse per theme file.
 export async function loadIndexedThemes(): Promise<RimeTheme[]> {
-  const response = await fetch("/resources/themes.json");
+  const response = await fetch(withBasePath("/resources/themes.json"));
   if (!response.ok) throw new Error(`Resource bundle failed: ${response.status}`);
   const themes = await response.json();
   if (!Array.isArray(themes)) throw new Error("Resource bundle must be an array");

@@ -1,5 +1,6 @@
 import { ImageUp } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { withBasePath } from "@/domain/base-path";
 import type { RimeTheme } from "@/domain/rime";
 import type { MessageKey, makeTranslator } from "@/i18n/messages";
 import { OverlayShell } from "./overlay-shell";
@@ -95,7 +96,7 @@ export function PaletteCreatorOverlay({
   useEffect(() => {
     if (!open || fetchedRef.current) return;
     fetchedRef.current = true;
-    void fetch("/data/figma-color-palettes.json")
+    void fetch(withBasePath("/data/figma-color-palettes.json"))
       .then((r) => r.json())
       .then((data: unknown) => { if (Array.isArray(data)) setFigmaPalettes(data as FigmaPalette[]); })
       .catch(() => { fetchedRef.current = false; });
