@@ -1,0 +1,66 @@
+{
+  "chars": {
+    "preedit": { "prologue": "", "highlighted": "zhong", "postlude": "" },
+    "candidates": [
+      { "candidate": "中", "label": "1", "comment": "Zhōng" },
+      { "candidate": "种", "label": "2", "comment": "Zhǒng" },
+      { "candidate": "重", "label": "3", "comment": "Zhòng" },
+      { "candidate": "终", "label": "4", "comment": "Zhōng" },
+      { "candidate": "钟", "label": "5", "comment": "Zhōng" },
+      { "candidate": "众", "label": "6", "comment": "Zhòng" },
+      { "candidate": "忠", "label": "7", "comment": "Zhōng" },
+      { "candidate": "仲", "label": "8", "comment": "Zhòng" },
+      { "candidate": "衷", "label": "9", "comment": "Zhōng" },
+      { "candidate": "盅", "label": "10", "comment": "Zhōng" }
+    ],
+    "selection": 0
+  },
+  "words": {
+    "preedit": { "prologue": "我想去", "highlighted": "shang hai", "postlude": "wanjitian" },
+    "candidates": [
+      { "candidate": "上海", "label": "1", "comment": "Shàng Hǎi" },
+      { "candidate": "商海", "label": "2", "comment": "ㄕㄤ ㄏㄞˇ" },
+      { "candidate": "傷害", "label": "3", "comment": "Harm" },
+      { "candidate": "Shanghai", "label": "4", "comment": "上海" },
+      { "candidate": "上还", "label": "5", "comment": "Shàng Hái" },
+      { "candidate": "尚海", "label": "6", "comment": "Shàng Hǎi" },
+      { "candidate": "赏海", "label": "7", "comment": "Shǎng Hǎi" },
+      { "candidate": "殇海", "label": "8", "comment": "Shāng Hǎi" },
+      { "candidate": "上孩", "label": "9", "comment": "Shàng Hái" },
+      { "candidate": "上嗨", "label": "10", "comment": "Shàng Hai" }
+    ],
+    "selection": 0
+  },
+  "sentences": {
+    "preedit": { "prologue": "长句", "highlighted": "yu ce", "postlude": "" },
+    "candidates": [
+      { "candidate": "明月松间照", "label": "1", "comment": "" },
+      { "candidate": "清泉石上流", "label": "2", "comment": "" },
+      { "candidate": "候选注释", "label": "3", "comment": "" },
+      { "candidate": "长句预览", "label": "4", "comment": "" },
+      { "candidate": "标点，。", "label": "5", "comment": "" },
+      { "candidate": "一蓑烟雨任平生", "label": "6", "comment": "" },
+      { "candidate": "Rime 配色", "label": "7", "comment": "" },
+      { "candidate": "深色模式", "label": "8", "comment": "" },
+      { "candidate": "平台差异", "label": "9", "comment": "" },
+      { "candidate": "导出 YAML", "label": "10", "comment": "" }
+    ],
+    "selection": 0
+  },
+  "mixed": {
+    "preedit": { "prologue": "", "highlighted": "rime zhuti", "postlude": "" },
+    "candidates": [
+      { "candidate": "Rime", "label": "1", "comment": "" },
+      { "candidate": "主题", "label": "2", "comment": "Zhǔtí" },
+      { "candidate": "theme", "label": "3", "comment": "" },
+      { "candidate": "配色", "label": "4", "comment": "Pèisè" },
+      { "candidate": "YAML", "label": "5", "comment": "" },
+      { "candidate": "Weasel", "label": "6", "comment": "" },
+      { "candidate": "Squirrel", "label": "7", "comment": "" },
+      { "candidate": "0xBBGGRR", "label": "8", "comment": "" },
+      { "candidate": "候选", "label": "9", "comment": "Hòuxuǎn" },
+      { "candidate": "draft", "label": "10", "comment": "" }
+    ],
+    "selection": 0
+  }
+}
