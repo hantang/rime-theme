@@ -139,7 +139,7 @@
   "ui.background.default": "Default",
   "ui.background.transparent": "Transparent",
   "ui.board.dark": "Dark scheme",
-  "ui.board.generateVariant": "Generate inverted variant",
+  "ui.board.generateVariant": "Generate variant",
   "ui.board.inlineOff": "Preedit in window",
   "ui.board.inlineOn": "Inline preedit",
   "ui.board.layout": "Layout grid",

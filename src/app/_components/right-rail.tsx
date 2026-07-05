@@ -75,13 +75,14 @@ export function RightRail(props: {
 
   return (
     <aside className={`${open ? "grid" : "hidden"} fixed inset-y-0 right-0 z-40 w-[92vw] max-w-[410px] grid-rows-[auto_minmax(0,1fr)] overflow-y-auto border-l border-[var(--line)] bg-[var(--panel)] shadow-2xl xl:static xl:z-auto xl:grid xl:h-[calc(100vh-52px)] xl:w-auto xl:max-w-none xl:shadow-none`}>
-      <div className="flex flex-wrap items-center justify-between gap-2 px-3 pt-3">
-        <div className="flex flex-wrap gap-2">
+      {/* 动作按钮与 Form/Code 模式切换分两行：切换器整行宽度（tab 形态），动作按钮英文文案也可单行放下 */}
+      <div className="grid gap-2 px-3 pt-3">
+        <div className="flex flex-wrap items-center gap-2">
           <button type="button" onClick={resetTheme} className="h-8 whitespace-nowrap rounded-full bg-[var(--soft)] px-3 text-[11px] font-bold">{t("ui.editor.reset")}</button>
           <button type="button" onClick={saveDraft} className="h-8 whitespace-nowrap rounded-full bg-[var(--soft)] px-3 text-[11px] font-bold">{t("ui.editor.saveDraft")}</button>
           <button type="button" onClick={generateVariant} className="h-8 whitespace-nowrap rounded-full bg-[var(--soft)] px-3 text-[11px] font-bold">{t("ui.board.generateVariant")}</button>
         </div>
-        <Segmented items={[["visual", t("ui.editor.visual")], ["yaml", t("ui.editor.code")]]} value={editorMode} onChange={(value) => setEditorMode(value as EditorMode)} />
+        <Segmented grow items={[["visual", t("ui.editor.visual")], ["yaml", t("ui.editor.code")]]} value={editorMode} onChange={(value) => setEditorMode(value as EditorMode)} />
       </div>
       {editorMode === "visual" ? (
         <div className="min-h-0 overflow-y-auto">

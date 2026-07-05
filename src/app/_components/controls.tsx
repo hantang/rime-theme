@@ -50,12 +50,13 @@ export function SelectField({ label, rawKey, value, items, onChange }: { label: 
   );
 }
 
-export function Segmented({ label, items, value, onChange }: { label?: string; items: Array<[string, string]>; value: string; onChange: (value: string) => void }) {
+// grow：整行宽度、各选项均分——用于"模式切换"类分段控件（如 Form/Code），与普通动作按钮在形态上区分开
+export function Segmented({ label, items, value, onChange, grow }: { label?: string; items: Array<[string, string]>; value: string; onChange: (value: string) => void; grow?: boolean }) {
   return (
-    <div className="flex flex-wrap items-center gap-1 rounded-[18px] bg-[var(--soft)] p-1">
+    <div className={`flex ${grow ? "w-full" : "flex-wrap"} items-center gap-1 rounded-[18px] bg-[var(--soft)] p-1`}>
       {label ? <span className="px-3 text-[11px] font-black text-[var(--muted)]">{label}</span> : null}
       {items.map(([id, text]) => (
-        <button key={id} type="button" onClick={() => onChange(id)} className={`h-8 whitespace-nowrap rounded-full px-3 text-[11px] font-black transition ${value === id ? "bg-[var(--ink)] text-[var(--panel)]" : "text-[var(--muted)]"}`}>
+        <button key={id} type="button" onClick={() => onChange(id)} className={`h-8 whitespace-nowrap rounded-full px-3 text-[11px] font-black transition ${grow ? "flex-1" : ""} ${value === id ? "bg-[var(--ink)] text-[var(--panel)]" : "text-[var(--muted)]"}`}>
           {text}
         </button>
       ))}
@@ -112,14 +113,19 @@ export function PlainMeta({ label, value }: { label: string; value: string }) {
   );
 }
 
+// 两种语境：Metadata 区（无 rawKey）沿用"大写小标签 + 通栏输入框"；style 字段（有 rawKey）
+// 与同区域 SelectField/RangeField 一致，走 LabelRow 横排，避免 uppercase/muted 级联到字段名
 export function TextField({ label, rawKey, value, onChange, placeholder }: { label: string; rawKey?: string; value: string; onChange: (value: string) => void; placeholder?: string }) {
+  if (rawKey) {
+    return (
+      <LabelRow label={label} rawKey={rawKey}>
+        <input value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} aria-label={label} className="h-8 w-[150px] rounded-full border border-[var(--line)] bg-[var(--soft)] px-3 text-[11px] font-bold outline-none placeholder:text-[var(--muted)] focus:border-[var(--accent)]" />
+      </LabelRow>
+    );
+  }
   return (
     <label className="grid gap-1">
-      {rawKey ? (
-        <FieldLabelBlock label={label} rawKey={rawKey} className="text-[10px] font-bold uppercase text-[var(--muted)]" />
-      ) : (
-        <span className="text-[10px] font-bold uppercase text-[var(--muted)]">{label}</span>
-      )}
+      <span className="text-[10px] font-bold uppercase text-[var(--muted)]">{label}</span>
       <input value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} className="h-8 rounded-[6px] border border-[var(--line)] bg-[var(--input)] px-2 text-[12px] font-bold outline-none focus:border-[var(--accent)]" />
     </label>
   );

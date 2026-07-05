@@ -1,7 +1,7 @@
 import type { Platform, RimeStyleControls, StyleFieldMeta } from "@/domain/rime";
 import type { MessageKey, makeTranslator } from "@/i18n/messages";
 import { commonFontCategories, commonFontStacks, fontFaceSuggestions, type CommonFontCategory, type FontFaceMode } from "../_lib/workbench";
-import { FieldLabelBlock, RangeField, Segmented, SelectField, TextField } from "./controls";
+import { RangeField, Segmented, SelectField, TextField } from "./controls";
 
 type Translator = ReturnType<typeof makeTranslator>;
 export type StyleValue = string | number | boolean | undefined;
@@ -84,22 +84,16 @@ export function StyleFieldControl({ field, value, style, platform, t, updateStyl
     return <FontFaceSelect field={field} value={value} label={label} rawKey={rawKey} fontFaceMode={fontFaceMode} localFonts={localFonts} t={t} updateStyle={updateStyle} />;
   }
 
+  // 布尔/枚举与其他字段统一为下拉框（Segmented 按钮组过宽且长文案会换行）；首项 Not set 可回到未设置态
   if (field.type === "boolean") {
-    return (
-      <div className="flex min-h-8 items-center justify-between gap-3">
-        <FieldLabelBlock label={label} rawKey={rawKey} />
-        <Segmented items={[["on", t("ui.common.on")], ["off", t("ui.common.off")]]} value={value === true ? "on" : "off"} onChange={(id) => updateStyle(field.id, id === "on")} />
-      </div>
-    );
+    const current = value === true ? "on" : value === false ? "off" : "";
+    const items: Array<[string, string]> = [["", t("ui.common.unset")], ["on", t("ui.common.on")], ["off", t("ui.common.off")]];
+    return <SelectField label={label} rawKey={rawKey} value={current} items={items} onChange={(next) => updateStyle(field.id, next === "" ? undefined : next === "on")} />;
   }
 
   if (field.type === "enum") {
-    return (
-      <div className="flex min-h-8 items-center justify-between gap-3">
-        <FieldLabelBlock label={label} rawKey={rawKey} />
-        <Segmented items={(field.enumValues ?? []).map((item) => [item, enumItemLabel(field.id, item, t)] as [string, string])} value={typeof value === "string" ? value : ""} onChange={(id) => updateStyle(field.id, id)} />
-      </div>
-    );
+    const items: Array<[string, string]> = [["", t("ui.common.unset")], ...(field.enumValues ?? []).map((item) => [item, enumItemLabel(field.id, item, t)] as [string, string])];
+    return <SelectField label={label} rawKey={rawKey} value={typeof value === "string" ? value : ""} items={items} onChange={(next) => updateStyle(field.id, next === "" ? undefined : next)} />;
   }
 
   if (field.type === "number") {
