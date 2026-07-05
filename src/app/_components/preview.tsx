@@ -80,6 +80,8 @@ export function PreviewCanvas({
   setSampleKey,
   sampleCount,
   setSampleCount,
+  sampleSelection,
+  setSampleSelection,
   setPreviewBackground,
   previewBoard,
   setPreviewBoard,
@@ -97,6 +99,8 @@ export function PreviewCanvas({
   setSampleKey: (sample: SampleSetKey) => void;
   sampleCount: number;
   setSampleCount: (count: number) => void;
+  sampleSelection: number;
+  setSampleSelection: (selection: number) => void;
   setPreviewBackground: (background: PreviewBackground) => void;
   previewBoard: PreviewBoard;
   setPreviewBoard: (board: PreviewBoard) => void;
@@ -115,6 +119,7 @@ export function PreviewCanvas({
       <div className="mb-2 flex flex-wrap items-center gap-x-4 gap-y-1">
         <SelectField label={t("ui.control.sample")} value={sampleKey} onChange={(value) => setSampleKey(value as SampleSetKey)} items={[["chars", t("data.sample.chars")], ["words", t("data.sample.words")], ["sentences", t("data.sample.sentences")], ["mixed", t("data.sample.mixed")]]} />
         <RangeField label={t("ui.control.sampleCount")} value={sampleCount} min={1} max={10} onChange={setSampleCount} />
+        <RangeField label={t("ui.control.sampleSelection")} value={sampleSelection} min={0} max={sampleCount - 1} onChange={setSampleSelection} />
         <SelectField label={t("ui.control.background")} value={previewBackground} onChange={(value) => setPreviewBackground(value as PreviewBackground)} items={[["default", t("ui.background.default")], ["dark", t("ui.background.dark")], ["transparent", t("ui.background.transparent")]]} />
         <Segmented items={[["single", t("ui.board.single")], ["layout", t("ui.board.layout")], ["lightDark", t("ui.board.lightDark")]]} value={previewBoard} onChange={(value) => setPreviewBoard(value as PreviewBoard)} />
       </div>

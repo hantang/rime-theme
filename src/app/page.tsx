@@ -70,6 +70,7 @@ export default function Home() {
   const [localFontsError, setLocalFontsError] = useState(false);
   const [sampleKey, setSampleKey] = useState<SampleSetKey>("words");
   const [sampleCount, setSampleCount] = useState(5);
+  const [sampleSelection, setSampleSelection] = useState(0);
   const [editorMode, setEditorMode] = useState<EditorMode>("visual");
   const [fieldMode, setFieldMode] = useState<FieldMode>("simple");
   const [yamlDraft, setYamlDraft] = useState<string | null>(null);
@@ -148,7 +149,9 @@ export default function Home() {
     });
   }, [colorFilter, filter, query, resources]);
 
-  const sample: SampleSet = { ...sampleSets[sampleKey], candidates: sampleSets[sampleKey].candidates.slice(0, sampleCount) };
+  // 选中项随数量变化钳制在 [0, count-1]，避免数量调小后高亮丢失
+  const clampedSelection = Math.min(sampleSelection, sampleCount - 1);
+  const sample: SampleSet = { ...sampleSets[sampleKey], candidates: sampleSets[sampleKey].candidates.slice(0, sampleCount), selection: clampedSelection };
   const lightDarkPair = useMemo(() => findLightDarkPair(theme, [...drafts, ...resources]), [theme, drafts, resources]);
   const generatedYaml = useMemo(() => {
     if (theme.pairId && lightDarkPair?.pairId === theme.pairId) {
@@ -398,7 +401,7 @@ export default function Home() {
 
       <div className="grid min-h-[calc(100vh-52px)] grid-cols-1 xl:grid-cols-[300px_minmax(0,1fr)_390px]">
         <ResourceRail t={t} filter={filter} setFilter={setFilter} colorFilter={colorFilter} toggleColorFilter={toggleColorFilter} query={query} setQuery={setQuery} selectedKey={selectedKey} drafts={drafts} themes={visibleThemes} total={resources.length} status={resourceStatus} open={leftOpen} onClose={() => setLeftOpen(false)} onOpenBrowser={() => setPresetBrowserOpen(true)} onCreatePalette={() => setPaletteCreatorOpen(true)} onDeleteDraft={deleteDraft} onClearDrafts={clearDrafts} onSelect={(next) => { selectTheme(next); setLeftOpen(false); }} onGenerateVariant={generateVariant} />
-        <PreviewCanvas t={t} theme={theme} layout={layout} platform={platform} sample={sample} previewBackground={previewBackground} previewFontSize={previewFontSize} sampleKey={sampleKey} setSampleKey={setSampleKey} sampleCount={sampleCount} setSampleCount={setSampleCount} setPreviewBackground={setPreviewBackground} previewBoard={previewBoard} setPreviewBoard={setPreviewBoard} lightDarkPair={lightDarkPair} onGenerateVariant={() => generateVariant(theme)} />
+        <PreviewCanvas t={t} theme={theme} layout={layout} platform={platform} sample={sample} previewBackground={previewBackground} previewFontSize={previewFontSize} sampleKey={sampleKey} setSampleKey={setSampleKey} sampleCount={sampleCount} setSampleCount={setSampleCount} sampleSelection={clampedSelection} setSampleSelection={setSampleSelection} setPreviewBackground={setPreviewBackground} previewBoard={previewBoard} setPreviewBoard={setPreviewBoard} lightDarkPair={lightDarkPair} onGenerateVariant={() => generateVariant(theme)} />
         <RightRail t={t} theme={theme} platform={platform} fieldMode={fieldMode} setFieldMode={setFieldMode} updateMeta={updateMeta} updateColorFormat={updateColorFormat} updateColorSpace={updateColorSpace} editorMode={editorMode} setEditorMode={setEditorMode} yamlText={yamlText} setYamlText={updateYamlText} yamlError={yamlError} yamlWarnings={yamlWarnings} updateColor={updateColor} updateStyle={updateStyle} copyYaml={copyYaml} downloadYaml={downloadYaml} uploadYaml={uploadYaml} resetTheme={resetTheme} saveDraft={saveDraft} generateVariant={() => generateVariant(theme)} open={rightOpen} fontFaceMode={fontFaceMode} setFontFaceMode={setFontFaceMode} localFonts={localFonts} localFontsError={localFontsError} loadLocalFonts={loadLocalFonts} />
       </div>
 

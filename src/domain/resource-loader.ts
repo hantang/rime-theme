@@ -1,3 +1,4 @@
+import { parse as parseYamlScalar } from "yaml";
 import {
   colorFieldMeta,
   rimeColorFields,
@@ -258,7 +259,17 @@ function stripComment(line: string) {
 }
 
 function unquote(value: string) {
-  return value.trim().replace(/^["']|["']$/g, "");
+  const trimmed = value.trim();
+  const quote = trimmed[0];
+  if ((quote === '"' || quote === "'") && trimmed.length >= 2 && trimmed.endsWith(quote)) {
+    try {
+      const parsed = parseYamlScalar(trimmed);
+      if (typeof parsed === "string") return parsed;
+    } catch {
+      // 非法转义时回退到朴素剥引号
+    }
+  }
+  return trimmed.replace(/^["']|["']$/g, "");
 }
 
 function cleanText(value: string | undefined) {

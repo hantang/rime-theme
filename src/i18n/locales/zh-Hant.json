@@ -169,6 +169,7 @@
   "ui.control.platform": "平台",
   "ui.control.sample": "樣例",
   "ui.control.sampleCount": "數量",
+  "ui.control.sampleSelection": "選中項",
   "ui.drafts.clearAll": "清空",
   "ui.drafts.title": "草稿",
   "ui.editor.code": "源碼",

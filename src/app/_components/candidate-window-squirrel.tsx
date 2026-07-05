@@ -1,4 +1,4 @@
-import { hexToRgba, parseCandidateFormat, resolveThemeColor } from "@/domain/rime";
+import { hexToRgba, parseCandidateFormat, resolveThemeColor, type CandidateFieldKind } from "@/domain/rime";
 import type { CandidateWindowProps } from "./candidate-window-weasel";
 
 export function SquirrelCandidateWindow({ theme, layoutMode, textOrientation, sample, fontFamily, fontSize, labelFontFamily, labelFontSize, commentFontFamily, commentFontSize }: CandidateWindowProps) {
@@ -27,17 +27,17 @@ export function SquirrelCandidateWindow({ theme, layoutMode, textOrientation, sa
   const showPagingWidget = style.showPaging === true && (vertical || stacked);
   const { preedit, candidates, selection } = sample;
 
-  const segmentColor = (kind: "label" | "candidate" | "comment", active: boolean) => {
+  const segmentColor = (kind: CandidateFieldKind, active: boolean) => {
     if (kind === "label") return active ? hilitedLabel : label;
     if (kind === "comment") return active ? hilitedComment : comment;
     return active ? hilitedText : candidateText;
   };
-  const segmentFontFamily = (kind: "label" | "candidate" | "comment") => {
+  const segmentFontFamily = (kind: CandidateFieldKind) => {
     if (kind === "label") return labelFontFamily;
     if (kind === "comment") return commentFontFamily;
     return undefined;
   };
-  const segmentFontSize = (kind: "label" | "candidate" | "comment") => {
+  const segmentFontSize = (kind: CandidateFieldKind) => {
     if (kind === "label") return labelFontSize ?? "0.78em";
     if (kind === "comment") return commentFontSize ?? "0.78em";
     return undefined;
@@ -79,6 +79,10 @@ export function SquirrelCandidateWindow({ theme, layoutMode, textOrientation, sa
           {preedit.highlighted ? (
             <span style={{ color: preeditHilitedText, backgroundColor: colors.hilitedBackColor, borderRadius: 3, padding: "0 2px" }}>{preedit.highlighted}</span>
           ) : null}
+          {/* squirrel 在光标处（高亮段之后）绘制一个下沉的插入符 */}
+          {preedit.highlighted ? (
+            <span aria-hidden style={{ alignSelf: "flex-end", fontSize: "0.55em", lineHeight: 1, transform: "translateY(-15%)" }}>^</span>
+          ) : null}
           {preedit.postlude ? <span>{preedit.postlude}</span> : null}
         </div>
       ) : null}
@@ -107,7 +111,14 @@ export function SquirrelCandidateWindow({ theme, layoutMode, textOrientation, sa
               }}
             >
               {segments.map((segment, segmentIndex) => {
-                if (segment.kind === "text") return <span key={segmentIndex} style={{ whiteSpace: "pre" }}>{segment.text}</span>;
+                if (segment.kind === "text") {
+                  // 字面量跟随所属字段的配色与字体（如 "[label]." 的点号与序号同色同字号）
+                  return (
+                    <span key={segmentIndex} style={{ whiteSpace: "pre", color: segmentColor(segment.role, active), fontFamily: segmentFontFamily(segment.role), fontSize: segmentFontSize(segment.role) }}>
+                      {segment.text}
+                    </span>
+                  );
+                }
                 const value = segment.kind === "label" ? String(index + 1) : segment.kind === "candidate" ? entry.candidate : entry.comment;
                 if (!value) return null;
                 return (

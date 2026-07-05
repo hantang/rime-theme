@@ -1,3 +1,4 @@
+import { stringify } from "yaml";
 import { colorExportKey, colorFieldMeta, resolveThemeColor, styleFieldMeta } from "./fields";
 import { cssHexToRimeColor } from "./color";
 import { orderLightDark } from "./variant";
@@ -25,8 +26,8 @@ function schemeLines(theme: RimeTheme, platform: Platform): string[] {
   const indent = "    ";
   const lines = [
     `  preset_color_schemes/${theme.id}:`,
-    `${indent}name: "${theme.name}"`,
-    `${indent}author: "${theme.author}"`,
+    `${indent}name: ${yamlStringScalar(theme.name)}`,
+    `${indent}author: ${yamlStringScalar(theme.author)}`,
   ];
   if (platform === "weasel" && theme.presetColorScheme.colorFormat) {
     lines.push(`${indent}color_format: ${theme.presetColorScheme.colorFormat}`);
@@ -75,6 +76,12 @@ function styleSchemeLines(style: RimeStyleControls, platform: Platform, indent: 
 }
 
 function formatStyleValue(value: string | number | boolean, type: StyleFieldType) {
-  if (type === "string") return `"${String(value).replace(/"/g, "'")}"`;
+  if (type === "string") return yamlStringScalar(String(value));
   return String(value);
+}
+
+// 引号策略：默认单引号；含单引号时改用双引号；换行等复杂情况交给 yaml 库转义
+function yamlStringScalar(value: string): string {
+  const defaultStringType = value.includes("'") ? "QUOTE_DOUBLE" : "QUOTE_SINGLE";
+  return stringify(value, { defaultStringType, lineWidth: 0 }).trimEnd();
 }

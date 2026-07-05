@@ -7,22 +7,37 @@ export function formatWeaselLabel(format: string | undefined, index: number): st
   return format.replaceAll("%s", label);
 }
 
-export type CandidateSegment =
-  | { kind: "label" | "candidate" | "comment" }
-  | { kind: "text"; text: string };
+export type CandidateFieldKind = "label" | "candidate" | "comment";
 
-// squirrel candidate_format："[label]. [candidate] [comment]"，未识别的方括号按字面量保留
+export type CandidateSegment =
+  | { kind: CandidateFieldKind }
+  | { kind: "text"; text: string; role: CandidateFieldKind };
+
+// squirrel candidate_format："[label]. [candidate] [comment]"，未识别的方括号按字面量保留。
+// 字面量与前面的字段视为一个整体（如 "[label]." 的点号取标签色）；开头的字面量跟随其后的字段
 export function parseCandidateFormat(format: string | undefined): CandidateSegment[] {
   const template = format?.trim() || "[label]. [candidate] [comment]";
-  const segments: CandidateSegment[] = [];
+  const parts: Array<{ kind: CandidateFieldKind } | { kind: "text"; text: string }> = [];
   let last = 0;
   for (const match of template.matchAll(/\[(label|candidate|comment)\]/g)) {
-    if (match.index > last) segments.push({ kind: "text", text: template.slice(last, match.index) });
-    segments.push({ kind: match[1] as "label" | "candidate" | "comment" });
+    if (match.index > last) parts.push({ kind: "text", text: template.slice(last, match.index) });
+    parts.push({ kind: match[1] as CandidateFieldKind });
     last = match.index + match[0].length;
   }
-  if (last < template.length) segments.push({ kind: "text", text: template.slice(last) });
-  return segments;
+  if (last < template.length) parts.push({ kind: "text", text: template.slice(last) });
+
+  const roles: Array<CandidateFieldKind | undefined> = new Array(parts.length);
+  let previous: CandidateFieldKind | undefined;
+  for (let i = 0; i < parts.length; i++) {
+    if (parts[i].kind !== "text") previous = parts[i].kind as CandidateFieldKind;
+    else roles[i] = previous;
+  }
+  let next: CandidateFieldKind = "candidate";
+  for (let i = parts.length - 1; i >= 0; i--) {
+    if (parts[i].kind !== "text") next = parts[i].kind as CandidateFieldKind;
+    else roles[i] ??= next;
+  }
+  return parts.map((part, i) => (part.kind === "text" ? { ...part, role: roles[i] ?? "candidate" } : part));
 }
 
 export function hexToRgba(hex: string, alpha: number): string {

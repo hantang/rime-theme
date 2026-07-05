@@ -169,6 +169,7 @@
   "ui.control.platform": "Platform",
   "ui.control.sample": "Sample",
   "ui.control.sampleCount": "Count",
+  "ui.control.sampleSelection": "Selection",
   "ui.drafts.clearAll": "Clear",
   "ui.drafts.title": "Drafts",
   "ui.editor.code": "Code",
