@@ -17,6 +17,7 @@ import {
   isThemeDirty,
   modeOrder,
   normalizeSchemeId,
+  pickRandomTheme,
   queryLocalFontFamilies,
   readStoredDrafts,
   sampleSets,
@@ -148,6 +149,13 @@ export default function Home() {
       return matchesFilter && matchesColor && matchesQuery;
     });
   }, [colorFilter, filter, query, resources]);
+
+  // 随机换装候选池：全量 preset 叠加 tag+color 筛选（不含搜索词——有搜索词时按钮禁用）；排除当前主题保证前后两次不同
+  const randomPool = useMemo(
+    () => resources.filter((item) => (filter === "all" || item.tags.includes(filter)) && themeMatchesColor(item, colorFilter)),
+    [resources, filter, colorFilter],
+  );
+  const randomThemeEnabled = resourceStatus === "ready" && query.trim() === "" && randomPool.some((item) => themeKey(item) !== themeKey(theme));
 
   // 选中项随数量变化钳制在 [0, count-1]，避免数量调小后高亮丢失
   const clampedSelection = Math.min(sampleSelection, sampleCount - 1);
@@ -335,6 +343,14 @@ export default function Home() {
     setSelectedKey(themeKey(draft));
   }
 
+  // 随机换装：切换前若当前主题改过则自动存草稿（YAML 报错时存的是最后一次合法状态）
+  function selectRandomTheme() {
+    const pick = pickRandomTheme(randomPool, themeKey(theme));
+    if (!pick) return;
+    if (isThemeDirty(theme, originalTheme)) upsertDraft(themeToDraft(theme, t("ui.drafts.title")));
+    selectTheme(pick);
+  }
+
   function upsertDraft(draft: RimeTheme) {
     setDrafts((current) => [structuredClone(draft), ...current.filter((item) => themeKey(item) !== themeKey(draft))].slice(0, 20));
   }
@@ -400,17 +416,17 @@ export default function Home() {
       {(leftOpen || rightOpen) && <button type="button" aria-label={t("ui.panel.close")} onClick={() => { setLeftOpen(false); setRightOpen(false); }} className="fixed inset-0 z-30 bg-black/25 xl:hidden" />}
 
       <div className="grid min-h-[calc(100vh-52px)] grid-cols-1 xl:grid-cols-[300px_minmax(0,1fr)_390px]">
-        <ResourceRail t={t} filter={filter} setFilter={setFilter} colorFilter={colorFilter} toggleColorFilter={toggleColorFilter} query={query} setQuery={setQuery} selectedKey={selectedKey} drafts={drafts} themes={visibleThemes} total={resources.length} status={resourceStatus} open={leftOpen} onClose={() => setLeftOpen(false)} onOpenBrowser={() => setPresetBrowserOpen(true)} onCreatePalette={() => setPaletteCreatorOpen(true)} onDeleteDraft={deleteDraft} onClearDrafts={clearDrafts} onSelect={(next) => { selectTheme(next); setLeftOpen(false); }} onGenerateVariant={generateVariant} />
+        <ResourceRail t={t} filter={filter} setFilter={setFilter} colorFilter={colorFilter} toggleColorFilter={toggleColorFilter} query={query} setQuery={setQuery} selectedKey={selectedKey} drafts={drafts} themes={visibleThemes} total={resources.length} status={resourceStatus} open={leftOpen} onClose={() => setLeftOpen(false)} onOpenBrowser={() => setPresetBrowserOpen(true)} onCreatePalette={() => setPaletteCreatorOpen(true)} onRandomTheme={selectRandomTheme} randomEnabled={randomThemeEnabled} onDeleteDraft={deleteDraft} onClearDrafts={clearDrafts} onSelect={(next) => { selectTheme(next); setLeftOpen(false); }} onGenerateVariant={generateVariant} />
         <PreviewCanvas t={t} theme={theme} layout={layout} platform={platform} sample={sample} previewBackground={previewBackground} previewFontSize={previewFontSize} sampleKey={sampleKey} setSampleKey={setSampleKey} sampleCount={sampleCount} setSampleCount={setSampleCount} sampleSelection={clampedSelection} setSampleSelection={setSampleSelection} setPreviewBackground={setPreviewBackground} previewBoard={previewBoard} setPreviewBoard={setPreviewBoard} lightDarkPair={lightDarkPair} onGenerateVariant={() => generateVariant(theme)} />
         <RightRail t={t} theme={theme} platform={platform} fieldMode={fieldMode} setFieldMode={setFieldMode} updateMeta={updateMeta} updateColorFormat={updateColorFormat} updateColorSpace={updateColorSpace} editorMode={editorMode} setEditorMode={setEditorMode} yamlText={yamlText} setYamlText={updateYamlText} yamlError={yamlError} yamlWarnings={yamlWarnings} updateColor={updateColor} updateStyle={updateStyle} copyYaml={copyYaml} downloadYaml={downloadYaml} uploadYaml={uploadYaml} resetTheme={resetTheme} saveDraft={saveDraft} generateVariant={() => generateVariant(theme)} open={rightOpen} fontFaceMode={fontFaceMode} setFontFaceMode={setFontFaceMode} localFonts={localFonts} localFontsError={localFontsError} loadLocalFonts={loadLocalFonts} />
       </div>
 
       {presetBrowserOpen && (
-        <PresetBrowserOverlay t={t} themes={visibleThemes} total={resources.length} onSelectTheme={selectTheme} onExport={downloadBatchYaml} onClose={() => setPresetBrowserOpen(false)} />
+        // 弹窗自带独立筛选，传入全量预设而非主侧栏筛过的子集
+        <PresetBrowserOverlay t={t} themes={resources} total={resources.length} onSelectTheme={selectTheme} onExport={downloadBatchYaml} onClose={() => setPresetBrowserOpen(false)} />
       )}
-      {paletteCreatorOpen && (
-        <PaletteCreatorOverlay t={t} onUseTheme={usePaletteTheme} onClose={() => setPaletteCreatorOpen(false)} />
-      )}
+      {/* 常驻挂载：关闭后重开保留已上传图片与筛选状态（misclick 遮罩不丢工作） */}
+      <PaletteCreatorOverlay t={t} open={paletteCreatorOpen} onUseTheme={usePaletteTheme} onClose={() => setPaletteCreatorOpen(false)} />
     </main>
   );
 }

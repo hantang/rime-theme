@@ -72,6 +72,13 @@ export function themeKey(theme: RimeTheme) {
   return `${theme.sourceFile}:${theme.id}`;
 }
 
+// 随机换装：排除当前主题后等概率抽取，保证前后两次不同；候选为空返回 null（调用侧据此禁用按钮）
+export function pickRandomTheme(pool: RimeTheme[], excludeKey: string | null, rng: () => number = Math.random): RimeTheme | null {
+  const candidates = excludeKey === null ? pool : pool.filter((item) => themeKey(item) !== excludeKey);
+  if (candidates.length === 0) return null;
+  return candidates[Math.min(candidates.length - 1, Math.floor(rng() * candidates.length))];
+}
+
 // P4 明暗配对启发式（P5 引入 pairId 前）：同基础名 + 显式后缀相反，或兜底计算明暗相反
 export function findLightDarkPair(theme: RimeTheme, themes: RimeTheme[]): RimeTheme | null {
   if (theme.pairId) {

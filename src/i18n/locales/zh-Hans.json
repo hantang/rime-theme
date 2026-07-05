@@ -224,6 +224,7 @@
   "ui.resources.createPalette": "新增配色",
   "ui.resources.deleteDraft": "删除草稿",
   "ui.resources.loadFailed": "主题库加载失败，当前显示内置示例主题",
+  "ui.resources.randomTheme": "随机主题",
   "ui.resources.search": "搜索配色主题名称、作者或文件",
   "ui.resources.title": "配色资源",
   "ui.right.editor": "编辑",

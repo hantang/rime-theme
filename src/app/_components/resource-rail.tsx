@@ -1,4 +1,4 @@
-import { Contrast, Library, Plus, Search, Trash2 } from "lucide-react";
+import { Contrast, Dices, Library, Plus, Search, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { RimeTheme } from "@/domain/rime";
 import { getThemeSwatches } from "@/data/resources";
@@ -24,6 +24,8 @@ export function ResourceRail({
   onClose,
   onOpenBrowser,
   onCreatePalette,
+  onRandomTheme,
+  randomEnabled,
   onDeleteDraft,
   onClearDrafts,
   onSelect,
@@ -45,6 +47,8 @@ export function ResourceRail({
   onClose: () => void;
   onOpenBrowser: () => void;
   onCreatePalette: () => void;
+  onRandomTheme: () => void;
+  randomEnabled: boolean;
   onDeleteDraft: (theme: RimeTheme) => void;
   onClearDrafts: () => void;
   onSelect: (theme: RimeTheme) => void;
@@ -72,6 +76,9 @@ export function ResourceRail({
       <div className="mb-2.5 flex items-center justify-between">
         <h2 className="text-[15px] font-black">{t("ui.resources.title")}</h2>
         <div className="flex items-center gap-2">
+          <button type="button" onClick={onRandomTheme} disabled={!randomEnabled} title={t("ui.resources.randomTheme")} aria-label={t("ui.resources.randomTheme")} className="grid size-8 place-items-center rounded-full bg-[var(--soft)] text-[var(--ink)] transition hover:bg-[var(--soft-strong)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--soft)]">
+            <Dices className="size-4" />
+          </button>
           <button type="button" onClick={onOpenBrowser} title={t("ui.resources.browseAll")} aria-label={t("ui.resources.browseAll")} className="grid size-8 place-items-center rounded-full bg-[var(--soft)] text-[var(--ink)] transition hover:bg-[var(--soft-strong)]">
             <Library className="size-4" />
           </button>

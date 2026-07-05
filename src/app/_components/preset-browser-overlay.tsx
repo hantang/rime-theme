@@ -1,10 +1,11 @@
 import { useState } from "react";
 import type { Platform, PreviewLayout, RimeTheme } from "@/domain/rime";
 import type { makeTranslator } from "@/i18n/messages";
-import { CloseButton, Segmented, SelectField } from "./controls";
+import { Segmented, SelectField } from "./controls";
+import { OverlayShell } from "./overlay-shell";
 import { CandidateWindow, getCanvasBackground } from "./preview";
 import { ColorFilterDots } from "./resource-rail";
-import { filters, sampleSets, themeKey, type ColorFilter, type Filter, type PresetBrowserView, type PreviewBackground, type SampleSet, type SampleSetKey } from "../_lib/workbench";
+import { filters, sampleSets, themeKey, themeMatchesColor, type ColorFilter, type Filter, type PresetBrowserView, type PreviewBackground, type SampleSet, type SampleSetKey } from "../_lib/workbench";
 
 type Translator = ReturnType<typeof makeTranslator>;
 
@@ -35,8 +36,16 @@ export function PresetBrowserOverlay({
   const localPreviewBackground: PreviewBackground = "default";
   const localPreviewFontSize = 14;
 
+  // 与主侧栏同一套筛选逻辑（标签 + 色相 + 关键词），避免各自实现漂移
+  const q = localQuery.trim().toLowerCase();
+  const visibleThemes = themes.filter((item) => {
+    if (localFilter !== "all" && !item.tags.includes(localFilter)) return false;
+    if (!themeMatchesColor(item, localColorFilter)) return false;
+    return !q || [item.name, item.author, item.sourceFile].some((value) => value.toLowerCase().includes(q));
+  });
+
   const selectedSet = new Set(localSelectedKeys);
-  const visibleKeys = themes.map(themeKey);
+  const visibleKeys = visibleThemes.map(themeKey);
   const canvasBackground = getCanvasBackground(localPreviewBackground);
 
   function toggleTheme(key: string) {
@@ -52,12 +61,11 @@ export function PresetBrowserOverlay({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4 backdrop-blur-[2px] xl:p-8">
-      <div className="grid h-[88vh] w-[min(1280px,calc(100vw-32px))] grid-cols-1 grid-rows-[auto_minmax(0,1fr)] overflow-hidden rounded-[10px] border border-[var(--line)] bg-[var(--panel)] shadow-2xl xl:h-[82vh] xl:grid-cols-[280px_minmax(0,1fr)] xl:grid-rows-none">
+    <OverlayShell open closeLabel={t("ui.browser.close")} panelClassName="xl:grid-cols-[280px_minmax(0,1fr)]" onClose={onClose}>
         <aside className="min-h-0 overflow-y-auto border-b border-[var(--line)] p-4 xl:border-b-0 xl:border-r">
           <div className="mb-4">
             <div className="text-[20px] font-black">{t("ui.browser.title")}</div>
-            <div className="mt-1 text-[12px] font-bold text-[var(--muted)]">{themes.length}/{total} {t("ui.browser.count")}</div>
+            <div className="mt-1 text-[12px] font-bold text-[var(--muted)]">{visibleThemes.length}/{total} {t("ui.browser.count")}</div>
           </div>
           <input value={localQuery} onChange={(event) => setLocalQuery(event.target.value)} aria-label={t("ui.resources.search")} placeholder={t("ui.resources.search")} className="mb-3 h-9 w-full rounded-full border border-[var(--line)] bg-[var(--input)] px-3 text-[12px] font-semibold outline-none placeholder:text-[var(--muted)] focus:border-[var(--accent)]" />
           <div className="mb-4 flex flex-wrap gap-1.5 border-b border-[var(--line)] pb-4">
@@ -79,36 +87,21 @@ export function PresetBrowserOverlay({
           </div>
         </aside>
         <section className="grid min-h-0 min-w-0 grid-rows-[auto_minmax(0,1fr)]">
-          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--line)] px-5 py-3">
+          {/* pr-14 给外壳右上角的关闭按钮留位 */}
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--line)] py-3 pl-5 pr-14">
             <div className="flex items-center gap-2 text-[12px] font-bold text-[var(--muted)]">
               <span>{t("ui.browser.selected")}: {localSelectedKeys.length}</span>
               <button type="button" onClick={selectVisible} className="h-8 whitespace-nowrap rounded-full bg-[var(--soft)] px-3 text-[11px] font-black text-[var(--ink)]">{t("ui.browser.selectVisible")}</button>
               <button type="button" onClick={() => setLocalSelectedKeys([])} className="h-8 whitespace-nowrap rounded-full bg-[var(--soft)] px-3 text-[11px] font-black text-[var(--ink)]">{t("ui.browser.clear")}</button>
             </div>
-            <div className="flex items-center gap-2">
-              <button type="button" disabled={localSelectedKeys.length === 0} onClick={() => onExport(themes.filter((item) => selectedSet.has(themeKey(item))))} className="h-8 whitespace-nowrap rounded-full bg-[var(--ink)] px-3 text-[11px] font-black text-[var(--panel)] disabled:cursor-not-allowed disabled:opacity-40">{t("ui.browser.exportSelected")}</button>
-              <CloseButton label={t("ui.browser.close")} onClick={onClose} />
-            </div>
+            <button type="button" disabled={localSelectedKeys.length === 0} onClick={() => onExport(themes.filter((item) => selectedSet.has(themeKey(item))))} className="h-8 whitespace-nowrap rounded-full bg-[var(--ink)] px-3 text-[11px] font-black text-[var(--panel)] disabled:cursor-not-allowed disabled:opacity-40">{t("ui.browser.exportSelected")}</button>
           </div>
           <div className="min-h-0 overflow-y-auto p-5 [scrollbar-gutter:stable]">
-            {themes.length === 0 ? (
+            {visibleThemes.length === 0 ? (
               <div className="grid h-full place-items-center text-[13px] font-bold text-[var(--muted)]">{t("ui.browser.empty")}</div>
             ) : (
               <div className={localView === "strips" ? "grid gap-3" : localView === "compact" ? "grid gap-2 sm:grid-cols-2 xl:grid-cols-3" : "grid gap-4 lg:grid-cols-2"}>
-                {themes
-                  .filter((item) => {
-                    if (localColorFilter.length > 0) {
-                      // Filter by color if selected
-                      return localColorFilter.some(c => item.colors[`${c}Color` as keyof typeof item.colors]);
-                    }
-                    return true;
-                  })
-                  .filter((item) => {
-                    if (localFilter !== "all" && !item.tags.includes(localFilter)) return false;
-                    if (localQuery && !item.name.toLowerCase().includes(localQuery.toLowerCase())) return false;
-                    return true;
-                  })
-                  .map((item) => {
+                {visibleThemes.map((item) => {
                     const key = themeKey(item);
                     return (
                       <PresetBrowserCard
@@ -131,8 +124,7 @@ export function PresetBrowserOverlay({
             )}
           </div>
         </section>
-      </div>
-    </div>
+    </OverlayShell>
   );
 }
 

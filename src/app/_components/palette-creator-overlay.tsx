@@ -2,7 +2,7 @@ import { ImageUp } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { RimeTheme } from "@/domain/rime";
 import type { MessageKey, makeTranslator } from "@/i18n/messages";
-import { CloseButton } from "./controls";
+import { OverlayShell } from "./overlay-shell";
 import { createThemeFromPalette, pickDistinctPaletteColors } from "../_lib/workbench";
 
 type Translator = ReturnType<typeof makeTranslator>;
@@ -71,10 +71,12 @@ const supportedImageTypes = new Set(["image/png", "image/jpeg", "image/webp", "i
 
 export function PaletteCreatorOverlay({
   t,
+  open,
   onUseTheme,
   onClose,
 }: {
   t: Translator;
+  open: boolean;
   onUseTheme: (theme: RimeTheme) => void;
   onClose: () => void;
 }) {
@@ -88,11 +90,18 @@ export function PaletteCreatorOverlay({
   const appliedTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
+  // 组件常驻挂载以保留上传/筛选状态，色板数据推迟到首次打开时再拉取
+  const fetchedRef = useRef(false);
   useEffect(() => {
+    if (!open || fetchedRef.current) return;
+    fetchedRef.current = true;
     void fetch("/data/figma-color-palettes.json")
       .then((r) => r.json())
       .then((data: unknown) => { if (Array.isArray(data)) setFigmaPalettes(data as FigmaPalette[]); })
-      .catch(() => {});
+      .catch(() => { fetchedRef.current = false; });
+  }, [open]);
+
+  useEffect(() => {
     return () => { if (appliedTimerRef.current) clearTimeout(appliedTimerRef.current); };
   }, []);
 
@@ -147,15 +156,10 @@ export function PaletteCreatorOverlay({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4 backdrop-blur-[2px] xl:p-8">
-      <div className="grid h-[88vh] w-[min(1280px,calc(100vw-32px))] grid-cols-1 grid-rows-[auto_minmax(0,1fr)] overflow-hidden rounded-[10px] border border-[var(--line)] bg-[var(--panel)] shadow-2xl xl:h-[82vh] xl:grid-cols-[220px_minmax(0,1fr)] xl:grid-rows-none">
-
+    <OverlayShell open={open} closeLabel={t("ui.browser.close")} panelClassName="xl:grid-cols-[220px_minmax(0,1fr)]" onClose={onClose}>
         {/* ── Left aside ── */}
         <aside className="flex min-h-0 flex-col gap-3 overflow-y-auto border-b border-[var(--line)] p-4 xl:border-b-0 xl:border-r">
-          <div className="flex items-start justify-between gap-3">
-            <div className="text-[18px] font-black leading-tight">{t("ui.palette.title")}</div>
-            <CloseButton label={t("ui.browser.close")} onClick={onClose} />
-          </div>
+          <div className="text-[18px] font-black leading-tight">{t("ui.palette.title")}</div>
           <p className="text-[11px] font-bold leading-5 text-[var(--muted)]">{t("ui.palette.applyHint")}</p>
           <label className="grid cursor-pointer place-items-center rounded-[8px] border border-dashed border-[var(--line)] bg-[var(--soft)] px-3 py-4 text-center transition hover:border-[var(--ink)]">
             <ImageUp className="mb-1.5 size-5 text-[var(--muted)]" />
@@ -170,8 +174,8 @@ export function PaletteCreatorOverlay({
         {/* ── Right: filters + grid ── */}
         <section className="grid min-h-0 min-w-0 grid-rows-[auto_minmax(0,1fr)]">
 
-          {/* Filter bar */}
-          <div className="min-w-0 border-b border-[var(--line)] px-4 py-3 space-y-2">
+          {/* Filter bar；pr-14 给外壳右上角的关闭按钮留位 */}
+          <div className="min-w-0 border-b border-[var(--line)] py-3 pl-4 pr-14 space-y-2">
             {activeTag && (
               <div className="flex items-center gap-2">
                 <span className="text-[11px] font-bold text-[var(--muted)]">{t("ui.filter.all")}:</span>
@@ -210,8 +214,7 @@ export function PaletteCreatorOverlay({
             )}
           </div>
         </section>
-      </div>
-    </div>
+    </OverlayShell>
   );
 }
 
