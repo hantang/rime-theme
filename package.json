@@ -1,27 +1,36 @@
 {
-  "name": "rime-theme",
+  "name": "rime-themes",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "predev": "tsx scripts/build-themes.mts",
+    "prebuild": "tsx scripts/build-themes.mts",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "NODE_OPTIONS=--no-experimental-webstorage vitest run",
+    "verify": "pnpm run lint && pnpm run test && pnpm run build"
   },
   "dependencies": {
+    "lucide-react": "^1.23.0",
     "next": "16.2.10",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.2",
-    "@types/node": "^20.19.43",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^25.9.4",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9.39.4",
     "eslint-config-next": "16.2.10",
+    "jsdom": "^27.4.0",
     "tailwindcss": "^4.3.2",
-    "typescript": "^5.9.3"
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
   }
 }
