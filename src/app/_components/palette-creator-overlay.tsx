@@ -7,13 +7,10 @@ import { OverlayShell } from "./overlay-shell";
 import { createThemeFromPalette, pickDistinctPaletteColors } from "../_lib/workbench";
 
 type Translator = ReturnType<typeof makeTranslator>;
-type FigmaPalette = { _id: string; name: string; colors: string[]; tags: string[] };
+type PaletteSource = "figma" | "bairesdev";
+type ColorPalette = { _id: string; name: string; colors: string[]; tags: string[]; source?: PaletteSource };
 
 // ── Category data ─────────────────────────────────────────────────────────
-// Display order is hand-picked (rainbow/seasonal grouping); the tag *set* is the
-// single source of truth and must match public/data/figma-color-categories.json
-// exactly — enforced by tests/app/palette-categories.test.ts, not re-derived at
-// runtime, so these stay literal string-union types for exhaustive Record checks below.
 
 export const STYLE_TAGS = [
   "Bright", "Complementary", "Cool", "Dark",
@@ -32,10 +29,16 @@ export const INSPIRATION_TAGS = [
   "Autumn", "Winter", "Beach", "Desert", "Christmas", "Rainbow",
 ] as const;
 
+// Source chips are proper nouns, shown as-is (no i18n)
+export const SOURCE_TAGS = ["Figma", "BairesDev"] as const;
+
 type StyleTag = (typeof STYLE_TAGS)[number];
 type ColorTag = (typeof COLOR_TAGS)[number];
 type InspirationTag = (typeof INSPIRATION_TAGS)[number];
-type AnyTag = StyleTag | ColorTag | InspirationTag;
+type SourceTag = (typeof SOURCE_TAGS)[number];
+type AnyTag = StyleTag | ColorTag | InspirationTag | SourceTag;
+
+const sourceBySourceTag: Record<SourceTag, PaletteSource> = { Figma: "figma", BairesDev: "bairesdev" };
 
 // Style tags reuse the existing data.styleTag.* i18n keys
 const styleI18nKey: Record<StyleTag, MessageKey> = {
@@ -81,9 +84,9 @@ export function PaletteCreatorOverlay({
   onUseTheme: (theme: RimeTheme) => void;
   onClose: () => void;
 }) {
-  const [imageCandidates, setImageCandidates] = useState<FigmaPalette[]>([]);
+  const [imageCandidates, setImageCandidates] = useState<ColorPalette[]>([]);
   const [uploadError, setUploadError] = useState<string | null>(null);
-  const [figmaPalettes, setFigmaPalettes] = useState<FigmaPalette[]>([]);
+  const [palettes, setPalettes] = useState<ColorPalette[]>([]);
   const [activeTag, setActiveTag] = useState<AnyTag | null>(null);
   const [search, setSearch] = useState("");
   const [lastAppliedId, setLastAppliedId] = useState<string | null>(null);
@@ -96,10 +99,14 @@ export function PaletteCreatorOverlay({
   useEffect(() => {
     if (!open || fetchedRef.current) return;
     fetchedRef.current = true;
-    void fetch(withBasePath("/data/figma-color-palettes.json"))
-      .then((r) => r.json())
-      .then((data: unknown) => { if (Array.isArray(data)) setFigmaPalettes(data as FigmaPalette[]); })
-      .catch(() => { fetchedRef.current = false; });
+    void Promise.all([
+      fetchPalettes("/data/figma-color-palettes.json", "figma"),
+      fetchPalettes("/data/bairesdev-color-palettes.json", "bairesdev"),
+    ]).then(([figma, bairesdev]) => {
+      const merged = [...figma, ...bairesdev];
+      if (merged.length > 0) setPalettes(merged);
+      else fetchedRef.current = false;
+    });
   }, [open]);
 
   useEffect(() => {
@@ -108,12 +115,17 @@ export function PaletteCreatorOverlay({
 
   const filteredPalettes = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return figmaPalettes.filter((p) => {
-      if (activeTag && !p.tags.includes(activeTag)) return false;
+    const activeSource = activeTag ? sourceBySourceTag[activeTag as SourceTag] : undefined;
+    return palettes.filter((p) => {
+      if (activeSource) {
+        if (p.source !== activeSource) return false;
+      } else if (activeTag && !p.tags.includes(activeTag)) {
+        return false;
+      }
       if (q && !p.name.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [figmaPalettes, activeTag, search]);
+  }, [palettes, activeTag, search]);
 
   const displayedPalettes = useMemo(() => filteredPalettes.slice(0, displayCount), [filteredPalettes, displayCount]);
   const hasMore = displayCount < filteredPalettes.length;
@@ -129,7 +141,7 @@ export function PaletteCreatorOverlay({
     return () => observer.disconnect();
   }, [hasMore]);
 
-  function applyPalette(p: FigmaPalette) {
+  function applyPalette(p: ColorPalette) {
     const candidate = { id: p._id, name: p.name, colors: p.colors, source: "style" as const };
     onUseTheme(createThemeFromPalette(candidate));
     setLastAppliedId(p._id);
@@ -189,6 +201,7 @@ export function PaletteCreatorOverlay({
             <CategoryRow label={t("ui.palette.catStyle")} tags={STYLE_TAGS} getLabel={(tag) => t(styleI18nKey[tag])} activeTag={activeTag} onToggle={toggleTag} />
             <CategoryRow label={t("ui.palette.catColor")} tags={COLOR_TAGS} getLabel={(tag) => t(colorI18nKey[tag])} activeTag={activeTag} onToggle={toggleTag} />
             <CategoryRow label={t("ui.palette.catInspiration")} tags={INSPIRATION_TAGS} getLabel={(tag) => t(inspirationI18nKey[tag])} activeTag={activeTag} onToggle={toggleTag} />
+            <CategoryRow label={t("ui.palette.catSource")} tags={SOURCE_TAGS} getLabel={(tag) => tag} activeTag={activeTag} onToggle={toggleTag} />
             <input value={search} onChange={(e) => setSearch(e.target.value)}
               placeholder={t("ui.palette.search")}
               className="h-8 w-full rounded-full border border-[var(--line)] bg-[var(--input)] px-3 text-[12px] font-semibold outline-none placeholder:text-[var(--muted)] focus:border-[var(--accent)]" />
@@ -202,7 +215,7 @@ export function PaletteCreatorOverlay({
                 <PaletteGrid palettes={imageCandidates} lastAppliedId={lastAppliedId} t={t} onApply={applyPalette} />
               </div>
             )}
-            {figmaPalettes.length === 0 ? (
+            {palettes.length === 0 ? (
               <div className="grid h-32 place-items-center text-[13px] font-bold text-[var(--muted)]">…</div>
             ) : filteredPalettes.length === 0 ? (
               <div className="grid h-32 place-items-center text-[13px] font-bold text-[var(--muted)]">{t("ui.browser.empty")}</div>
@@ -220,6 +233,30 @@ export function PaletteCreatorOverlay({
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
+
+// Figma bundle is `{source, categories, count, data}` (older dumps were a bare
+// array); BairesDev bundle is `{source, count, colors, data}` with numeric ids
+// and nullable names, and carries no tags — reachable via the source chip row.
+async function fetchPalettes(path: string, source: PaletteSource): Promise<ColorPalette[]> {
+  try {
+    const raw: unknown = await fetch(withBasePath(path)).then((r) => r.json());
+    const rows = Array.isArray(raw) ? raw : (raw as { data?: unknown } | null)?.data;
+    if (!Array.isArray(rows)) return [];
+    return rows.flatMap((row): ColorPalette[] => {
+      const { _id, name, colors, tags } = (row ?? {}) as { _id?: unknown; name?: unknown; colors?: unknown; tags?: unknown };
+      if (_id == null || !Array.isArray(colors)) return [];
+      return [{
+        _id: `${source}-${String(_id)}`,
+        name: typeof name === "string" && name.trim() ? name.trim() : `Palette ${String(_id)}`,
+        colors: colors.filter((c): c is string => typeof c === "string"),
+        tags: Array.isArray(tags) ? tags.filter((tag): tag is string => typeof tag === "string") : [],
+        source,
+      }];
+    });
+  } catch {
+    return [];
+  }
+}
 
 function translateTag(tag: string, t: Translator): string {
   if (tag in styleI18nKey) return t(styleI18nKey[tag as StyleTag]);
@@ -270,10 +307,10 @@ function PaletteGrid({
   t,
   onApply,
 }: {
-  palettes: FigmaPalette[];
+  palettes: ColorPalette[];
   lastAppliedId: string | null;
   t: Translator;
-  onApply: (p: FigmaPalette) => void;
+  onApply: (p: ColorPalette) => void;
 }) {
   return (
     <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">

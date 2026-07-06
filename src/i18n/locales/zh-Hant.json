@@ -205,6 +205,7 @@
   "ui.palette.applyHint": "點擊配色卡片直接套用並儲存為草稿",
   "ui.palette.catColor": "顏色",
   "ui.palette.catInspiration": "靈感",
+  "ui.palette.catSource": "來源",
   "ui.palette.catStyle": "風格",
   "ui.palette.imageCandidates": "圖片辨識候選",
   "ui.palette.loadingMore": "載入中…",

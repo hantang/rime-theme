@@ -205,6 +205,7 @@
   "ui.palette.applyHint": "Click any palette to apply it and save as a draft",
   "ui.palette.catColor": "Colors",
   "ui.palette.catInspiration": "Inspiration",
+  "ui.palette.catSource": "Source",
   "ui.palette.catStyle": "Styles",
   "ui.palette.imageCandidates": "Image candidates",
   "ui.palette.loadingMore": "Loading more…",
