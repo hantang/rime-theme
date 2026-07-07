@@ -7,7 +7,7 @@ import { OverlayShell } from "./overlay-shell";
 import { createThemeFromPalette, pickDistinctPaletteColors } from "../_lib/workbench";
 
 type Translator = ReturnType<typeof makeTranslator>;
-type PaletteSource = "figma" | "bairesdev";
+type PaletteSource = "figma" | "colorhunt" | "bairesdev" | "yeguozi";
 type ColorPalette = { _id: string; name: string; colors: string[]; tags: string[]; source?: PaletteSource };
 
 // ── Category data ─────────────────────────────────────────────────────────
@@ -30,7 +30,7 @@ export const INSPIRATION_TAGS = [
 ] as const;
 
 // Source chips are proper nouns, shown as-is (no i18n)
-export const SOURCE_TAGS = ["Figma", "BairesDev"] as const;
+export const SOURCE_TAGS = ["Figma", "ColorHunt", "BairesDev", "Yeguozi"] as const;
 
 type StyleTag = (typeof STYLE_TAGS)[number];
 type ColorTag = (typeof COLOR_TAGS)[number];
@@ -38,7 +38,7 @@ type InspirationTag = (typeof INSPIRATION_TAGS)[number];
 type SourceTag = (typeof SOURCE_TAGS)[number];
 type AnyTag = StyleTag | ColorTag | InspirationTag | SourceTag;
 
-const sourceBySourceTag: Record<SourceTag, PaletteSource> = { Figma: "figma", BairesDev: "bairesdev" };
+const sourceBySourceTag: Record<SourceTag, PaletteSource> = { Figma: "figma", ColorHunt: "colorhunt", BairesDev: "bairesdev", Yeguozi: "yeguozi" };
 
 // Style tags reuse the existing data.styleTag.* i18n keys
 const styleI18nKey: Record<StyleTag, MessageKey> = {
@@ -101,9 +101,11 @@ export function PaletteCreatorOverlay({
     fetchedRef.current = true;
     void Promise.all([
       fetchPalettes("/data/figma-color-palettes.json", "figma"),
+      fetchPalettes("/data/colorhunt-color-palettes.json", "colorhunt"),
       fetchPalettes("/data/bairesdev-color-palettes.json", "bairesdev"),
-    ]).then(([figma, bairesdev]) => {
-      const merged = [...figma, ...bairesdev];
+      fetchPalettes("/data/yeguozi-color-palettes.json", "yeguozi"),
+    ]).then((results) => {
+      const merged = results.flat();
       if (merged.length > 0) setPalettes(merged);
       else fetchedRef.current = false;
     });
@@ -234,28 +236,67 @@ export function PaletteCreatorOverlay({
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
+// ColorHunt uses lowercase collection tags; map them onto the existing chip
+// vocabulary so its palettes surface under Style/Color/Inspiration filters.
+// Tags with no equivalent chip (food, gradient, halloween, happy, kids,
+// nature, space, wedding) are dropped — those palettes stay reachable via
+// the ColorHunt source chip.
+export const COLORHUNT_TAG_MAP: Record<string, AnyTag> = {
+  christmas: "Christmas", cold: "Cool", coffee: "Brown", cream: "Beige",
+  dark: "Dark", earth: "Earthy", fall: "Autumn", gold: "Gold",
+  light: "Bright", neon: "Bright", night: "Dark", pastel: "Pastel",
+  rainbow: "Rainbow", retro: "Retro", sea: "Ocean", skin: "Peach",
+  sky: "Blue", spring: "Spring", summer: "Summer", sunset: "Sunset",
+  vintage: "Retro", warm: "Warm", winter: "Winter",
+};
+
+const knownTags = new Set<string>([...STYLE_TAGS, ...COLOR_TAGS, ...INSPIRATION_TAGS]);
+
+// 已是分类词的直接保留,小写词查映射表,其余丢弃;去重保序
+function normalizeTags(rawTags: string[]): string[] {
+  const result: string[] = [];
+  for (const tag of rawTags) {
+    const mapped = knownTags.has(tag) ? tag : COLORHUNT_TAG_MAP[tag];
+    if (mapped && !result.includes(mapped)) result.push(mapped);
+  }
+  return result;
+}
+
 // Figma bundle is `{source, categories, count, data}` (older dumps were a bare
 // array); BairesDev bundle is `{source, count, colors, data}` with numeric ids
-// and nullable names, and carries no tags — reachable via the source chip row.
+// and nullable names, and carries no tags; ColorHunt bundle is `{source, count,
+// data}` where rows have neither id nor name — id falls back to the row index
+// and the display name is derived from the raw tags; Yeguozi (film palettes)
+// rows are `{id, title, titleEn, colors}` with no tags.
 async function fetchPalettes(path: string, source: PaletteSource): Promise<ColorPalette[]> {
   try {
     const raw: unknown = await fetch(withBasePath(path)).then((r) => r.json());
     const rows = Array.isArray(raw) ? raw : (raw as { data?: unknown } | null)?.data;
     if (!Array.isArray(rows)) return [];
-    return rows.flatMap((row): ColorPalette[] => {
-      const { _id, name, colors, tags } = (row ?? {}) as { _id?: unknown; name?: unknown; colors?: unknown; tags?: unknown };
-      if (_id == null || !Array.isArray(colors)) return [];
+    return rows.flatMap((row, index): ColorPalette[] => {
+      const { _id, id: rowId, name, title, colors, tags } = (row ?? {}) as {
+        _id?: unknown; id?: unknown; name?: unknown; title?: unknown; colors?: unknown; tags?: unknown;
+      };
+      if (!Array.isArray(colors)) return [];
+      const id = _id != null ? String(_id) : rowId != null ? String(rowId) : String(index);
+      const rawName = typeof name === "string" && name.trim() ? name : typeof title === "string" ? title : "";
+      const rawTags = Array.isArray(tags) ? tags.filter((tag): tag is string => typeof tag === "string") : [];
       return [{
-        _id: `${source}-${String(_id)}`,
-        name: typeof name === "string" && name.trim() ? name.trim() : `Palette ${String(_id)}`,
+        _id: `${source}-${id}`,
+        name: rawName.trim() || fallbackName(rawTags, id),
         colors: colors.filter((c): c is string => typeof c === "string"),
-        tags: Array.isArray(tags) ? tags.filter((tag): tag is string => typeof tag === "string") : [],
+        tags: normalizeTags(rawTags),
         source,
       }];
     });
   } catch {
     return [];
   }
+}
+
+function fallbackName(rawTags: string[], id: string): string {
+  if (rawTags.length === 0) return `Palette ${id}`;
+  return rawTags.map((tag) => tag.charAt(0).toUpperCase() + tag.slice(1)).join(" · ");
 }
 
 function translateTag(tag: string, t: Translator): string {
