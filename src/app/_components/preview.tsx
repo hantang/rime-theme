@@ -18,7 +18,7 @@ const ZOOM_STEP = 10;
 // 画布容器改为固定高度 + overflow-hidden 后内容不再撑高外层，这里再叠加一个可缩放的浮层供用户手动缩小/适配查看
 function ZoomControl({ zoom, onZoomOut, onZoomIn, onReset, onFit, t }: { zoom: number; onZoomOut: () => void; onZoomIn: () => void; onReset: () => void; onFit: () => void; t: Translator }) {
   return (
-    <div className="absolute bottom-3 right-3 flex items-center gap-0.5 rounded-full border border-[var(--line)] bg-[var(--panel)] px-1 shadow-lg">
+    <div className="app-surface absolute bottom-3 right-3 flex items-center gap-0.5 rounded-full border border-[var(--line)] bg-[var(--panel)] px-1 shadow-lg">
       <button type="button" title={t("ui.preview.zoomOut")} aria-label={t("ui.preview.zoomOut")} onClick={onZoomOut} className="grid size-8 shrink-0 place-items-center rounded-full text-[var(--ink)] hover:bg-[var(--soft)]">
         <Minus className="size-[18px]" />
       </button>
@@ -111,7 +111,7 @@ export function PreviewCanvas({
   const { viewportRef, contentRef, zoom, zoomOut, zoomIn, reset, fit } = usePreviewZoom(`${previewBoard}:${platform}:${theme.id}`);
 
   return (
-    <section className="relative flex min-h-[480px] flex-col overflow-hidden p-3 xl:min-h-[560px] xl:p-5" style={{ background: "var(--canvas)" }}>
+    <section className="app-canvas relative flex min-h-[480px] flex-col overflow-hidden p-3 xl:min-h-[560px] xl:p-5" style={{ background: "var(--canvas)" }}>
       <div className="mb-2">
         <div className="text-[10px] font-bold uppercase text-[var(--muted)]">{t("ui.preview.title")}</div>
         <div className="mt-0.5 text-[17px] font-black">{theme.name}</div>
@@ -203,7 +203,8 @@ export function CandidateWindow({
 export function getCanvasBackground(previewBackground: PreviewBackground) {
   if (previewBackground === "dark") return "#171b24";
   if (previewBackground === "transparent") return "linear-gradient(45deg, var(--soft) 25%, transparent 25%), linear-gradient(-45deg, var(--soft) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--soft) 75%), linear-gradient(-45deg, transparent 75%, var(--soft) 75%)";
-  return "var(--canvas)";
+  // 候选窗底板优先用不透明的 --board（glass 定义），避免半透明画布干扰取色判断
+  return "var(--board, var(--canvas))";
 }
 
 type BoardProps = {

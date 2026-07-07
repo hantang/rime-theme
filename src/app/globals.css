@@ -41,43 +41,61 @@ html[data-mode="dark"] {
   --candidate-text: #f5f7fb;
 }
 
+/* glass：面板半透明 + backdrop blur（.app-surface/.app-canvas），极光底图由 body::before 提供。
+   --board 是候选窗底板专用的不透明色，避免半透明 --canvas 干扰取色判断；其他风格不定义，回退到 --canvas */
 html[data-style="glass"] {
-  --page: #eef4f8;
-  --panel: rgba(255, 255, 255, 0.72);
-  --canvas: linear-gradient(135deg, #edf6ff, #f7f1ff 48%, #e8fff8);
-  --soft: rgba(255, 255, 255, 0.55);
-  --soft-strong: rgba(255, 255, 255, 0.75);
-  --line: rgba(113, 125, 145, 0.42);
+  --page: #eef3f9;
+  --panel: rgba(255, 255, 255, 0.5);
+  --canvas: rgba(255, 255, 255, 0.28);
+  --board: #f5f9fd;
+  --soft: rgba(255, 255, 255, 0.52);
+  --soft-strong: rgba(255, 255, 255, 0.74);
+  --input: rgba(255, 255, 255, 0.6);
+  --line: rgba(101, 116, 145, 0.34);
+  --shadow-inset: inset 0 1px 3px rgba(30, 50, 90, 0.14), 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
-html[data-style="swatch"] {
-  --page: #f9f6f0;
-  --canvas: #ece3d7;
-  --soft: #eee8dd;
-  --soft-strong: #e5dccd;
-  --accent: #108b7d;
-  --accent-soft: rgba(16, 139, 125, 0.18);
+/* brutal：克制版新粗野主义 —— 米白纸底 + 全黑线稿（--line 即 --ink）+ 单一高饱和 accent；
+   形体规则（粗边、硬投影、按压位移）集中在下方 data-style="brutal" 区块。
+   两种模式都定义全套变量，避免旧 swatch 只覆盖部分变量导致弹窗与页面色不一致的问题 */
+html[data-style="brutal"] {
+  --page: #f6f1e5;
+  --panel: #fdfaf1;
+  --canvas: #efe7d3;
+  --ink: #1a1712;
+  --muted: #6f6754;
+  --line: #1a1712;
+  --soft: #f2ead7;
+  --soft-strong: #e7dcc0;
+  --input: #fffdf6;
+  --accent: #ff5714;
+  --accent-soft: rgba(255, 87, 20, 0.22);
 }
 
-html[data-mode="dark"][data-style="swatch"] {
-  --page: #101413;
-  --panel: #171d1b;
-  --canvas: #202824;
-  --soft: #222b27;
-  --soft-strong: #2c3833;
-  --line: #40504a;
-  --input: #111715;
-  --accent: #35c2a8;
-  --accent-soft: rgba(53, 194, 168, 0.18);
+html[data-mode="dark"][data-style="brutal"] {
+  --page: #16130e;
+  --panel: #201c14;
+  --canvas: #282216;
+  --ink: #f3ecd9;
+  --muted: #a99e86;
+  --line: #f3ecd9;
+  --soft: #2c261b;
+  --soft-strong: #3a3222;
+  --input: #12100a;
+  --accent: #ff7a33;
+  --accent-soft: rgba(255, 122, 51, 0.24);
 }
 
 html[data-mode="dark"][data-style="glass"] {
-  --page: #0f1420;
-  --panel: rgba(21, 24, 32, 0.78);
-  --canvas: linear-gradient(135deg, #202b3e, #2a253a 48%, #16352e);
-  --soft: rgba(255, 255, 255, 0.08);
-  --soft-strong: rgba(255, 255, 255, 0.13);
-  --line: rgba(220, 226, 236, 0.2);
+  --page: #0c1120;
+  --panel: rgba(20, 24, 36, 0.55);
+  --canvas: rgba(9, 13, 24, 0.35);
+  --board: #151b2a;
+  --soft: rgba(255, 255, 255, 0.07);
+  --soft-strong: rgba(255, 255, 255, 0.12);
+  --input: rgba(6, 10, 20, 0.45);
+  --line: rgba(220, 226, 236, 0.17);
+  --shadow-inset: inset 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 body {
@@ -85,9 +103,119 @@ body {
   color: var(--ink);
 }
 
-html[data-style="glass"] body {
-  backdrop-filter: blur(18px);
+/* ── glass 风格的玻璃层 ──
+   极光底图固定在视口（z-index:-1 落在内容之后、页面底色之前），
+   main 需透明让它露出来，.app-surface/.app-canvas 的 backdrop-filter 才有可模糊对象 */
+html[data-style="glass"] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(52rem 36rem at 12% -4%, rgba(96, 165, 250, 0.6), transparent 62%),
+    radial-gradient(46rem 34rem at 96% 12%, rgba(192, 132, 252, 0.5), transparent 60%),
+    radial-gradient(40rem 28rem at 30% 55%, rgba(125, 211, 252, 0.35), transparent 60%),
+    radial-gradient(56rem 40rem at 62% 108%, rgba(45, 212, 191, 0.5), transparent 62%),
+    var(--page);
 }
+
+html[data-mode="dark"][data-style="glass"] body::before {
+  background:
+    radial-gradient(52rem 36rem at 12% -4%, rgba(59, 130, 246, 0.4), transparent 62%),
+    radial-gradient(46rem 34rem at 96% 12%, rgba(147, 51, 234, 0.34), transparent 60%),
+    radial-gradient(56rem 40rem at 62% 108%, rgba(20, 184, 166, 0.26), transparent 62%),
+    var(--page);
+}
+
+html[data-style="glass"] main {
+  background: transparent;
+}
+
+/* 面板玻璃：真实 blur + 内侧顶部高光边 + 柔和投影（覆盖 Tailwind shadow-* 工具类，仅 glass 下生效） */
+html[data-style="glass"] .app-surface {
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.55), 0 12px 32px -8px rgba(40, 60, 110, 0.14);
+}
+
+html[data-mode="dark"][data-style="glass"] .app-surface {
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.09), 0 12px 32px -8px rgba(0, 0, 0, 0.5);
+}
+
+/* 预览区外壳：更强的磨砂、无高光投影，让候选窗底板（--board，不透明）保持中性 */
+html[data-style="glass"] .app-canvas {
+  -webkit-backdrop-filter: blur(28px) saturate(140%);
+  backdrop-filter: blur(28px) saturate(140%);
+}
+
+/* 触感第一步：输入类控件做内凹井（--shadow-inset 仅 glass 定义） */
+html[data-style="glass"] :is(input:not([type="range"]):not([type="file"]):not([type="checkbox"]), select) {
+  box-shadow: var(--shadow-inset);
+}
+
+/* glass 下遮罩不用重黑压暗——半透明面板会把 55% 黑合成成灰、吃掉极光色相；
+   改为轻暗化 + 遮罩自身强模糊做景深，对话框/抽屉背后保持彩色（solid/brutal 仍用默认黑遮罩） */
+html[data-style="glass"] .app-backdrop {
+  background: rgba(15, 23, 42, 0.22);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+}
+
+/* 遮罩变浅后对话框略升不透明度，补回内容可读性 */
+html[data-style="glass"] [role="dialog"].app-surface {
+  background: rgba(255, 255, 255, 0.62);
+}
+
+html[data-mode="dark"][data-style="glass"] [role="dialog"].app-surface {
+  background: rgba(20, 24, 36, 0.66);
+}
+
+/* ── brutal 风格的形体规则 ──
+   全站线稿加粗：凡带 Tailwind 边框工具类的元素统一 2px。
+   候选窗预览完全用 inline style 画边框，不用这些类，故保真不受影响 */
+html[data-style="brutal"] [class~="border"] { border-width: 2px; }
+html[data-style="brutal"] [class~="border-t"] { border-top-width: 2px; }
+html[data-style="brutal"] [class~="border-b"] { border-bottom-width: 2px; }
+html[data-style="brutal"] [class~="border-l"] { border-left-width: 2px; }
+html[data-style="brutal"] [class~="border-r"] { border-right-width: 2px; }
+
+/* 芯片/动作按钮：黑粗边 + 硬投影（零模糊、offset），按压位移“压扁”投影。
+   [class~=] 全词匹配只命中带主题背景 token 的按钮——hover:bg-* 前缀类、
+   透明文字按钮（折叠标题、缩放条内钮、分段控件未选中项）与全屏遮罩按钮天然不命中 */
+html[data-style="brutal"] button:is(
+  [class~="bg-[var(--soft)]"],
+  [class~="bg-[var(--soft-strong)]"],
+  [class~="bg-[var(--ink)]"],
+  [class~="bg-[var(--accent)]"],
+  [class~="bg-[var(--panel)]"],
+  [class~="bg-green-500"],
+  [class~="bg-red-500"]
+) {
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 0 var(--ink);
+}
+
+html[data-style="brutal"] button:is(
+  [class~="bg-[var(--soft)]"],
+  [class~="bg-[var(--soft-strong)]"],
+  [class~="bg-[var(--ink)]"],
+  [class~="bg-[var(--accent)]"],
+  [class~="bg-[var(--panel)]"],
+  [class~="bg-green-500"],
+  [class~="bg-red-500"]
+):active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 0 var(--ink);
+}
+
+/* header 的 SelectControl 药丸是 label 元素，补同款黑边（无投影，避免头部一行过闹） */
+html[data-style="brutal"] label[class~="bg-[var(--soft)]"]:not([class~="border"]) {
+  border: 2px solid var(--ink);
+}
+
+/* 悬浮面板的硬投影：缩放工具条（全边框 .app-surface）小offset，弹窗对话框大offset（后者特异性更高故覆盖前者） */
+html[data-style="brutal"] .app-surface[class~="border"] { box-shadow: 4px 4px 0 0 var(--ink); }
+html[data-style="brutal"] [role="dialog"].app-surface { box-shadow: 10px 10px 0 0 var(--ink); }
 
 button,
 input {

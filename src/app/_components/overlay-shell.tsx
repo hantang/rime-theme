@@ -19,7 +19,7 @@ export function OverlayShell({ open, closeLabel, panelClassName, onClose, childr
   return (
     <div
       role="presentation"
-      className={`${open ? "flex" : "hidden"} fixed inset-0 z-50 items-center justify-center bg-black/55 p-4 backdrop-blur-[2px] xl:p-8`}
+      className={`${open ? "flex" : "hidden"} app-backdrop fixed inset-0 z-50 items-center justify-center bg-black/55 p-4 backdrop-blur-[2px] xl:p-8`}
       onMouseDown={(event) => {
         pressedOnBackdrop.current = event.target === event.currentTarget;
       }}
@@ -27,7 +27,7 @@ export function OverlayShell({ open, closeLabel, panelClassName, onClose, childr
         if (pressedOnBackdrop.current && event.target === event.currentTarget) onClose();
       }}
     >
-      <div role="dialog" aria-modal="true" className={`relative grid h-[88vh] w-[min(1280px,calc(100vw-32px))] grid-cols-1 grid-rows-[auto_minmax(0,1fr)] overflow-hidden rounded-[10px] border border-[var(--line)] bg-[var(--panel)] shadow-2xl xl:h-[82vh] xl:grid-rows-none ${panelClassName ?? ""}`}>
+      <div role="dialog" aria-modal="true" className={`app-surface relative grid h-[88vh] w-[min(1280px,calc(100vw-32px))] grid-cols-1 grid-rows-[auto_minmax(0,1fr)] overflow-hidden rounded-[10px] border border-[var(--line)] bg-[var(--panel)] shadow-2xl xl:h-[82vh] xl:grid-rows-none ${panelClassName ?? ""}`}>
         <div className="absolute right-3 top-3 z-10">
           <CloseButton label={closeLabel} onClick={onClose} />
         </div>

@@ -393,7 +393,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[var(--page)] text-[var(--ink)]">
-      <header className="flex items-center justify-between gap-2 border-b border-[var(--line)] bg-[var(--panel)] px-3 py-2 lg:h-[52px] lg:px-4">
+      <header className="app-surface flex items-center justify-between gap-2 border-b border-[var(--line)] bg-[var(--panel)] px-3 py-2 lg:h-[52px] lg:px-4">
         <div className="flex min-w-0 items-center gap-2.5">
           <div className="size-8 shrink-0 rounded-[7px] bg-[linear-gradient(135deg,var(--accent),#01b2ff_48%,#07111f_49%)]" />
           <div className="flex min-w-0 items-baseline gap-2">
@@ -404,7 +404,7 @@ export default function Home() {
         <div className="flex min-w-0 items-center gap-1.5">
           <SelectControl label={t("ui.nav.language")} value={locale} onChange={(value) => setLocale(value as LocaleCode)} items={localeConfigs.map((item) => [item.code, item.label])} />
           <SelectControl label={t("ui.control.platform")} value={platform} onChange={(value) => switchPlatform(value as Platform)} items={[["weasel", t("config.platform.weasel")], ["squirrel", t("config.platform.squirrel")]]} />
-          <SelectControl label={t("ui.nav.surface")} value={pageStyle} onChange={(value) => setPageStyle(value as PageStyle)} items={[["solid", t("ui.surface.solid")], ["glass", t("ui.surface.glass")], ["swatch", t("ui.surface.swatch")]]} />
+          <SelectControl label={t("ui.nav.surface")} value={pageStyle} onChange={(value) => setPageStyle(value as PageStyle)} items={[["solid", t("ui.surface.solid")], ["glass", t("ui.surface.glass")], ["brutal", t("ui.surface.brutal")]]} />
           <IconCycleButton label={t("ui.nav.interface")} title={t(`ui.mode.${mode}`)} mode={mode} onClick={cycleMode} />
         </div>
       </header>
@@ -413,7 +413,7 @@ export default function Home() {
         <button type="button" onClick={() => setLeftOpen(true)} className="rounded-full bg-[var(--ink)] px-4 py-2 text-[13px] font-black text-[var(--panel)] shadow-lg">{t("ui.resources.title")}</button>
         <button type="button" onClick={() => setRightOpen(true)} className="rounded-full bg-[var(--ink)] px-4 py-2 text-[13px] font-black text-[var(--panel)] shadow-lg">{t("ui.right.editor")}</button>
       </div>
-      {(leftOpen || rightOpen) && <button type="button" aria-label={t("ui.panel.close")} onClick={() => { setLeftOpen(false); setRightOpen(false); }} className="fixed inset-0 z-30 bg-black/25 xl:hidden" />}
+      {(leftOpen || rightOpen) && <button type="button" aria-label={t("ui.panel.close")} onClick={() => { setLeftOpen(false); setRightOpen(false); }} className="app-backdrop fixed inset-0 z-30 bg-black/25 xl:hidden" />}
 
       <div className="grid min-h-[calc(100vh-52px)] grid-cols-1 xl:grid-cols-[300px_minmax(0,1fr)_390px]">
         <ResourceRail t={t} filter={filter} setFilter={setFilter} colorFilter={colorFilter} toggleColorFilter={toggleColorFilter} query={query} setQuery={setQuery} selectedKey={selectedKey} drafts={drafts} themes={visibleThemes} total={resources.length} status={resourceStatus} open={leftOpen} onClose={() => setLeftOpen(false)} onOpenBrowser={() => setPresetBrowserOpen(true)} onCreatePalette={() => setPaletteCreatorOpen(true)} onRandomTheme={selectRandomTheme} randomEnabled={randomThemeEnabled} onDeleteDraft={deleteDraft} onClearDrafts={clearDrafts} onSelect={(next) => { selectTheme(next); setLeftOpen(false); }} onGenerateVariant={generateVariant} />

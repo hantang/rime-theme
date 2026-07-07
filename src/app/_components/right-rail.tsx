@@ -74,7 +74,7 @@ export function RightRail(props: {
   const styleGroups = getStyleFieldGroups(platform);
 
   return (
-    <aside className={`${open ? "grid" : "hidden"} fixed inset-y-0 right-0 z-40 w-[92vw] max-w-[410px] grid-rows-[auto_minmax(0,1fr)] overflow-y-auto border-l border-[var(--line)] bg-[var(--panel)] shadow-2xl xl:static xl:z-auto xl:grid xl:h-[calc(100vh-52px)] xl:w-auto xl:max-w-none xl:shadow-none`}>
+    <aside className={`${open ? "grid" : "hidden"} app-surface fixed inset-y-0 right-0 z-40 w-[92vw] max-w-[410px] grid-rows-[auto_minmax(0,1fr)] overflow-y-auto border-l border-[var(--line)] bg-[var(--panel)] shadow-2xl xl:static xl:z-auto xl:grid xl:h-[calc(100vh-52px)] xl:w-auto xl:max-w-none xl:shadow-none`}>
       {/* 动作按钮与 Form/Code 模式切换分两行：切换器整行宽度（tab 形态），动作按钮英文文案也可单行放下 */}
       <div className="grid gap-2 px-3 pt-3">
         <div className="flex flex-wrap items-center gap-2">

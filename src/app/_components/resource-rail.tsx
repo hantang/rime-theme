@@ -72,7 +72,7 @@ export function ResourceRail({
   }, [hasMore]);
 
   return (
-    <aside className={`${open ? "flex" : "hidden"} fixed inset-y-0 left-0 z-40 w-[86vw] max-w-[340px] flex-col border-r border-[var(--line)] bg-[var(--panel)] p-3 shadow-2xl xl:static xl:z-auto xl:flex xl:h-[calc(100vh-52px)] xl:w-auto xl:max-w-none xl:shadow-none`}>
+    <aside className={`${open ? "flex" : "hidden"} app-surface fixed inset-y-0 left-0 z-40 w-[86vw] max-w-[340px] flex-col border-r border-[var(--line)] bg-[var(--panel)] p-3 shadow-2xl xl:static xl:z-auto xl:flex xl:h-[calc(100vh-52px)] xl:w-auto xl:max-w-none xl:shadow-none`}>
       <div className="mb-2.5 flex items-center justify-between">
         <h2 className="text-[15px] font-black">{t("ui.resources.title")}</h2>
         <div className="flex items-center gap-2">

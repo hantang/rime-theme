@@ -2,7 +2,7 @@ import sampleSetsData from "@/data/sample-sets.json";
 import { hexToRgb, hslFromHex, inferTags, isDarkScheme, lightDarkSuffix, normalizeHexColor, paletteToThemeColors, stripLightDarkSuffix, type RimeTheme, type StyleTag } from "@/domain/rime";
 
 export type Mode = "system" | "light" | "dark";
-export type PageStyle = "solid" | "glass" | "swatch";
+export type PageStyle = "solid" | "glass" | "brutal";
 export type Filter = "all" | StyleTag;
 export type ColorFilter = "red" | "orange" | "yellow" | "green" | "cyan" | "blue" | "purple" | "pink" | "gray";
 export type EditorMode = "visual" | "yaml";
