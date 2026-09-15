@@ -56,3 +56,5 @@ todo/
 public/resources/
 .*/
 !.github/
+
+tests/
